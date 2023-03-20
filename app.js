@@ -28,6 +28,12 @@ var options = {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(function (req, res, next) {
+  res.header("Cross-Origin-Opener-Policy", "same-origin");
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
+  next();
+});
+
 app.use("/", router);
 
 app.use(express.static("public", options));

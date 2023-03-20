@@ -1,6 +1,6 @@
 {
-  "_vendor-12d7983b.js": {
-    "file": "assets/vendor-12d7983b.js"
+  "_vendor-4dc654ff.js": {
+    "file": "assets/vendor-4dc654ff.js"
   },
   "index.css": {
     "file": "assets/index-3e032743.css",
@@ -40,9 +40,14 @@
     "css": [
       "assets/index-3e032743.css"
     ],
-    "file": "assets/index-3671f631.js",
+    "dynamicImports": [
+      "src/pages/about/AboutPage.tsx",
+      "src/pages/contact/ContactPage.tsx",
+      "src/pages/404/NotFoundPage.tsx"
+    ],
+    "file": "assets/index-edae83a3.js",
     "imports": [
-      "_vendor-12d7983b.js"
+      "_vendor-4dc654ff.js"
     ],
     "isEntry": true,
     "src": "index.html"
@@ -158,5 +163,29 @@
   "node_modules/@fontsource/roboto/files/roboto-vietnamese-700-normal.woff2": {
     "file": "assets/roboto-vietnamese-700-normal-4ec57f2a.woff2",
     "src": "node_modules/@fontsource/roboto/files/roboto-vietnamese-700-normal.woff2"
+  },
+  "src/pages/404/NotFoundPage.tsx": {
+    "file": "assets/NotFoundPage-d413d332.js",
+    "imports": [
+      "_vendor-4dc654ff.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/404/NotFoundPage.tsx"
+  },
+  "src/pages/about/AboutPage.tsx": {
+    "file": "assets/AboutPage-f0fe4484.js",
+    "imports": [
+      "_vendor-4dc654ff.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/about/AboutPage.tsx"
+  },
+  "src/pages/contact/ContactPage.tsx": {
+    "file": "assets/ContactPage-81535278.js",
+    "imports": [
+      "_vendor-4dc654ff.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/contact/ContactPage.tsx"
   }
 }

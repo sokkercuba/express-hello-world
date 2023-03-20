@@ -5,7 +5,6 @@ const API_URL = import.meta.env.VITE_API_URL;
 const API_USER = import.meta.env.API_USER;
 const API_PASSW = import.meta.env.API_PASSW;
 
-window.Buffer = Buffer;
 const authorization =
   "Basic " + Buffer.from(API_USER + ":" + API_PASSW).toString("base64");
 

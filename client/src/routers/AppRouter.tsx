@@ -1,4 +1,4 @@
-import { lazy, ReactNode, Suspense } from "react";
+import { lazy, ReactNode, Suspense, useEffect, useState } from "react";
 import { Box } from "@mui/material/";
 import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
 
@@ -18,6 +18,24 @@ const SuspenseWrapper = ({ children }: SuspenseProps) => (
 );
 
 export const AppRouter = () => {
+  const [scriptLoadingState, setScriptLoadingState] = useState("IDLE");
+  console.log("🚀 ~ scriptLoadingState:", scriptLoadingState);
+
+  useEffect(() => {
+    var script = document.createElement("script");
+    script.type = "module";
+    script.src = "./webContainer/webContainer.js";
+
+    script.onload = function () {
+      setScriptLoadingState("LOADED");
+    };
+    script.onerror = function () {
+      setScriptLoadingState("FAILED");
+    };
+
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <BrowserRouter>
       <NavBar />
