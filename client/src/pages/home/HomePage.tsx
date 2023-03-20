@@ -5,8 +5,7 @@ import { AppContext } from "../../store/StoreProvider";
 
 export const HomePage = () => {
   const { state } = useContext(AppContext);
-  const { username } = state;
-  console.log("🚀 ~ username:", username);
+  console.log("🚀 ~ state:", state);
 
   return <div>Hello HomePage</div>;
 };

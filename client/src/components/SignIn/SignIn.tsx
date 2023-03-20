@@ -12,8 +12,9 @@ import Typography from "@mui/material/Typography";
 import { AppContext } from "../../store/StoreProvider";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import { setLoading, setLogin, setUsername } from "../../store/actions";
+import { handleLogin } from "../../services/sokkerApiServices";
 
 export default function SignIn() {
   const { state, dispatch } = useContext(AppContext);
@@ -30,21 +31,22 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
 
     setLoading(dispatch, true);
-    const apiData = await axios.post("/api/v1/login", {
-      login: data.get("email"),
-      password: data.get("password"),
+
+    const response = await handleLogin({
+      login: data.get("email") as string,
+      password: data.get("password") as string,
       remember: checked,
     });
 
     setLoading(dispatch, false);
-    console.log("🚀 ~ apiData:", apiData);
+    console.log("🚀 ~ apiData:", response);
 
-    const { status, statusText, data: userData } = apiData;
+    // const { status, statusText, data: userData } = response;
 
-    if (status === 200 && statusText === "OK") {
-      setLogin(dispatch, true);
-      setUsername(dispatch, userData?.data?.login || "");
-    }
+    // if (status === 200 && statusText === "OK") {
+    //   setLogin(dispatch, true);
+    //   setUsername(dispatch, userData?.data?.login || "");
+    // }
   };
 
   return (

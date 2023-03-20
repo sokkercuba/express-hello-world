@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
 import SignIn from "../SignIn";
-import { AppContext } from "../../store/StoreProvider";
 import { HomePage } from "../../pages";
+import { AppContext } from "../../store/StoreProvider";
 
 const LoginRequired = () => {
   const { state } = useContext(AppContext);
