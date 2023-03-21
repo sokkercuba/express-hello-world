@@ -36,14 +36,14 @@ export default function SignIn() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const formData = new FormData(event.currentTarget);
 
     setLoading(dispatch, true);
 
     const response = await handleLogin(
       {
-        login: data.get("email") as string,
-        password: data.get("password") as string,
+        login: formData.get("email") as string,
+        password: formData.get("password") as string,
         remember: checked,
       },
       ip
@@ -51,14 +51,16 @@ export default function SignIn() {
 
     setLoading(dispatch, false);
 
-    const { status, statusText, data: userData } = response;
+    const { status, statusText, data } = response.data || null;
+    console.log("🚀 ~ status:", status);
+    console.log("🚀 ~ status:", typeof status);
     console.log("🚀 ~ response:", response);
 
     if (status === 200) {
       setLogin(dispatch, true);
-      setUsername(dispatch, userData.data || "");
+      setUsername(dispatch, data || "");
     } else {
-      setError(dispatch, userData?.error || statusText);
+      setError(dispatch, data?.error || statusText);
     }
   };
 
