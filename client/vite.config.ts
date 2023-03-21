@@ -11,7 +11,7 @@ export default defineConfig({
   build: {
     manifest: true,
     minify: "terser",
-    outDir: "../Public",
+    outDir: "../public",
   },
   server: {
     proxy: { "/api/v1/*": "http://localhost:3000" },
