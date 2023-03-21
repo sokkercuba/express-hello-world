@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import axios from "axios";
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
@@ -13,11 +12,19 @@ import Settings from "@mui/icons-material/Settings";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import { AppContext } from "../../store/StoreProvider";
-import { setLoading, setLogin, setUsername } from "../../store/actions";
+import {
+  setError,
+  setLoading,
+  setLogin,
+  setUsername,
+} from "../../store/actions";
+import { handleLogOut } from "../../services";
+import useIpAddress from "../../services/useIpAddress";
 
 export default function AccountMenu() {
   const { state, dispatch } = useContext(AppContext);
   const { username } = state;
+  const ip = useIpAddress();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
@@ -31,23 +38,22 @@ export default function AccountMenu() {
   };
 
   const handleLogout = async () => {
-    console.log("🚀 ~ username:", username);
     setAnchorEl(null);
-
     setLoading(dispatch, true);
 
-    const apiData = await axios.get("/api/v1/logout", {
-      params: { login: username },
-    });
+    const apiData = await handleLogOut(username, ip);
 
     setLoading(dispatch, false);
-    console.log("🚀 ~ apiData:", apiData);
 
-    const { status, statusText } = apiData;
+    console.log("🚀 ~ handleLogoutData:", apiData);
+
+    const { status, statusText, data } = apiData;
 
     if (status === 200 && statusText === "OK") {
       setLogin(dispatch, false);
       setUsername(dispatch, "");
+    } else {
+      setError(dispatch, data?.error || statusText);
     }
   };
 

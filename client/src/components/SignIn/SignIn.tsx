@@ -1,9 +1,7 @@
-import axios from "axios";
 import { Box } from "@mui/material/";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import { LoadingButton } from "@mui/lab";
-import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
@@ -13,14 +11,24 @@ import { AppContext } from "../../store/StoreProvider";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
-import { setLoading, setLogin, setUsername } from "../../store/actions";
+import {
+  setError,
+  setLoading,
+  setLogin,
+  setUsername,
+} from "../../store/actions";
 import { handleLogin } from "../../services/sokkerApiServices";
+import useIpAddress from "../../services/useIpAddress";
 
 export default function SignIn() {
   const { state, dispatch } = useContext(AppContext);
   const { loading } = state;
+  const ip = useIpAddress();
   const [checked, setChecked] = useState(false);
-  console.log("🚀 ~ loading:", loading);
+
+  useEffect(() => {
+    console.log("🚀 ~ state:", state);
+  }, [state]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -32,21 +40,26 @@ export default function SignIn() {
 
     setLoading(dispatch, true);
 
-    const response = await handleLogin({
-      login: data.get("email") as string,
-      password: data.get("password") as string,
-      remember: checked,
-    });
+    const response = await handleLogin(
+      {
+        login: data.get("email") as string,
+        password: data.get("password") as string,
+        remember: checked,
+      },
+      ip
+    );
 
     setLoading(dispatch, false);
-    console.log("🚀 ~ apiData:", response);
 
-    // const { status, statusText, data: userData } = response;
+    const { status, statusText, data: userData } = response;
+    console.log("🚀 ~ response:", response);
 
-    // if (status === 200 && statusText === "OK") {
-    //   setLogin(dispatch, true);
-    //   setUsername(dispatch, userData?.data?.login || "");
-    // }
+    if (status === 200 && statusText === "OK") {
+      setLogin(dispatch, true);
+      setUsername(dispatch, userData.data || "");
+    } else {
+      setError(dispatch, userData?.error || statusText);
+    }
   };
 
   return (

@@ -1,5 +1,5 @@
 import { createContext, Dispatch, useReducer } from "react";
-import { StoreProviderProps } from "./StoreProviderProps";
+import type { StoreProviderProps } from "./StoreProviderProps";
 import storeReducer, { initialState, StoreState } from "./storeReducer";
 
 const AppContext = createContext<{

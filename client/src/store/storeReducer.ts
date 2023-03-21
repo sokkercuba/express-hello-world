@@ -1,10 +1,10 @@
-import { UserData } from "../types/UserData";
-import { JuniorData } from "../types/JuniorData";
-import { PlayerData } from "../types/PlayerData";
+import type { UserData } from "../types/UserData";
+import type { JuniorData } from "../types/JuniorData";
+import type { PlayerData } from "../types/PlayerData";
 
 export interface StoreState {
   error?: string;
-  username?: string;
+  username: string;
   loggedIn: boolean;
   loading: boolean;
   user?: UserData | null;

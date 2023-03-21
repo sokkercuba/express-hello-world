@@ -1,5 +1,7 @@
+const libCookie = require("cookie");
 const db = require("@cyclic.sh/dynamodb");
 const { default: axios } = require("axios");
+const setCookie = require("set-cookie-parser");
 
 const handleLogin = async (req, res) => {
   const { login, password } = req?.body || null;
@@ -17,12 +19,20 @@ const handleLogin = async (req, res) => {
 
   if (response.status === 200) {
     const responseCookies = response.headers["set-cookie"];
-    const item = await db.collection("auth").set(login, responseCookies);
-    console.log("🚀 ~ item response:", item);
+    const parsedCookies = setCookie.parse(responseCookies);
+
+    const headers = parsedCookies.map(function (cookie) {
+      return libCookie.serialize(cookie.name, cookie.value, cookie);
+    });
+
+    res.setHeader("Set-Cookie", headers);
+
+    const item = await db.collection("auth").set(login, headers);
+    console.log("🚀 ~ handleLogin item:", item);
   }
 
   const data = JSON.stringify({
-    data: { login },
+    data: login,
     status: response.status,
     statusText: response.statusText,
     headers: response.headers,
@@ -35,7 +45,7 @@ const handleLogOut = async (req, res) => {
   const { login } = req?.params || null;
 
   const cookies = await db.collection("auth").get(login);
-  console.log("🚀 ~ cookies:", cookies);
+  console.log("🚀 ~ handleLogOut cookies:", cookies);
 
   const response = await axios.get("https://sokker.org/index/action/start", {
     headers: {
@@ -45,7 +55,7 @@ const handleLogOut = async (req, res) => {
 
   if (response.status === 200) {
     const item = await db.collection("auth").delete(login);
-    console.log("🚀 ~ response:", item);
+    console.log("🚀 ~ handleLogOut item:", item);
   }
 
   const data = JSON.stringify({
