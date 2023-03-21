@@ -18,7 +18,7 @@ export const HomePage = () => {
 
       const { status, statusText, data } = response;
 
-      if (status === 200 && statusText === "OK") {
+      if (status === 200) {
         setUser(dispatch, data);
       } else {
         setError(dispatch, data?.error || statusText);

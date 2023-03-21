@@ -54,7 +54,7 @@ export default function SignIn() {
     const { status, statusText, data: userData } = response;
     console.log("🚀 ~ response:", response);
 
-    if (status === 200 && statusText === "OK") {
+    if (status === 200) {
       setLogin(dispatch, true);
       setUsername(dispatch, userData.data || "");
     } else {

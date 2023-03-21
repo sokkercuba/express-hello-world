@@ -49,7 +49,7 @@ export default function AccountMenu() {
 
     const { status, statusText, data } = apiData;
 
-    if (status === 200 && statusText === "OK") {
+    if (status === 200) {
       setLogin(dispatch, false);
       setUsername(dispatch, "");
     } else {
