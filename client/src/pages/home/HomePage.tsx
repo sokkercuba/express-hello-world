@@ -7,12 +7,13 @@ import { AppContext } from "../../store/StoreProvider";
 export const HomePage = () => {
   const ip = useIpAddress();
   const { state, dispatch } = useContext(AppContext);
-  console.log("🚀 ~ state:", state);
+  console.log("🚀 ~ HomePage state:", state);
 
   useEffect(() => {
     const userData = async () => {
       setLoading(dispatch, true);
       const response = await getUserData(ip);
+      console.log("🚀 ~ getUserData response:", response);
       setLoading(dispatch, false);
 
       const { status, statusText, data } = response;

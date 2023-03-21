@@ -9,10 +9,14 @@ const setError = (dispatch: Dispatch<StoreAction>, payload: any) => {
 };
 
 const setUsername = (dispatch: Dispatch<StoreAction>, payload: string) => {
+  console.log("🚀 ~ action setUsername:");
+  console.log("🚀 ~ payload:", payload);
   dispatch({ type: StoreActionTypes.SET_USERNAME, payload });
 };
 
 const setLogin = (dispatch: Dispatch<StoreAction>, payload: boolean) => {
+  console.log("🚀 ~ action setLogin:");
+  console.log("🚀 ~ payload:", payload);
   dispatch({ type: StoreActionTypes.SET_LOGIN, payload });
 };
 
