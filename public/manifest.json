@@ -1,6 +1,6 @@
 {
-  "_vendor-12af30a3.js": {
-    "file": "assets/vendor-12af30a3.js"
+  "_vendor-6f197fd2.js": {
+    "file": "assets/vendor-6f197fd2.js"
   },
   "index.html": {
     "dynamicImports": [
@@ -8,33 +8,33 @@
       "src/pages/contact/ContactPage.tsx",
       "src/pages/404/NotFoundPage.tsx"
     ],
-    "file": "assets/index-23af8f53.js",
+    "file": "assets/index-ce03a638.js",
     "imports": [
-      "_vendor-12af30a3.js"
+      "_vendor-6f197fd2.js"
     ],
     "isEntry": true,
     "src": "index.html"
   },
   "src/pages/404/NotFoundPage.tsx": {
-    "file": "assets/NotFoundPage-99ac996d.js",
+    "file": "assets/NotFoundPage-deba6391.js",
     "imports": [
-      "_vendor-12af30a3.js"
+      "_vendor-6f197fd2.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/404/NotFoundPage.tsx"
   },
   "src/pages/about/AboutPage.tsx": {
-    "file": "assets/AboutPage-813fb07e.js",
+    "file": "assets/AboutPage-4156d849.js",
     "imports": [
-      "_vendor-12af30a3.js"
+      "_vendor-6f197fd2.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/about/AboutPage.tsx"
   },
   "src/pages/contact/ContactPage.tsx": {
-    "file": "assets/ContactPage-4de02acb.js",
+    "file": "assets/ContactPage-e6939682.js",
     "imports": [
-      "_vendor-12af30a3.js"
+      "_vendor-6f197fd2.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/contact/ContactPage.tsx"

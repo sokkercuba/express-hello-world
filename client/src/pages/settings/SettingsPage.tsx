@@ -1,6 +1,4 @@
 import { useContext, useEffect } from "react";
-import { getUserData } from "../../services";
-import useIpAddress from "../../services/useIpAddress";
 import {
   setError,
   setLoading,
