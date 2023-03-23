@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Box } from "@mui/material/";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
@@ -13,17 +14,18 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import {
   setError,
+  setErrorMsg,
   setLoading,
   setLogin,
   setUsername,
 } from "../../store/actions";
-import { handleLogin } from "../../services/sokkerApiServices";
-import useIpAddress from "../../services/useIpAddress";
+import { parseSokkerErrors } from "../../services/apiErrorHandler";
+
+const VITE_SOKKER_URL = import.meta.env.VITE_SOKKER_URL;
 
 export default function SignIn() {
   const { state, dispatch } = useContext(AppContext);
   const { loading } = state;
-  const ip = useIpAddress();
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
@@ -40,28 +42,31 @@ export default function SignIn() {
 
     setLoading(dispatch, true);
 
-    const response = await handleLogin(
-      {
+    await axios
+      .post(`${VITE_SOKKER_URL}/api/auth/login`, {
         login: formData.get("email") as string,
         password: formData.get("password") as string,
         remember: checked,
-      },
-      ip
-    );
+      })
+      .then((response) => {
+        const { status, data } = response || null;
+        console.log("🚀 ~ response:", response);
+
+        if (status === 200 && !data?.error) {
+          setLogin(dispatch, true);
+        }
+        if (data?.error) {
+          setError(dispatch, true);
+          setErrorMsg(dispatch, parseSokkerErrors(data?.error));
+        }
+      })
+      .catch((error) => {
+        console.log("🚀 ~ error:", error);
+        setError(dispatch, true);
+        setErrorMsg(dispatch, error?.message || error);
+      });
 
     setLoading(dispatch, false);
-
-    const { status, statusText, data } = response.data || null;
-    console.log("🚀 ~ status:", status);
-    console.log("🚀 ~ status:", typeof status);
-    console.log("🚀 ~ response:", response);
-
-    if (status === 200) {
-      setLogin(dispatch, true);
-      setUsername(dispatch, data || "");
-    } else {
-      setError(dispatch, data?.error || statusText);
-    }
   };
 
   return (

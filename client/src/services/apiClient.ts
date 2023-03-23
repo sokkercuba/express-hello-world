@@ -10,6 +10,7 @@ const apiClient = axios.create({
     Accept: TYPE,
     [CONTENT_TYPE]: TYPE,
     "X-Forwarded-Host": "https://sokker.org",
+    "X-Forwarded-For": `https://sokker.org`,
   },
 });
 

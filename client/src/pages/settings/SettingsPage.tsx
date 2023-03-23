@@ -1,4 +1,6 @@
 import { useContext, useEffect } from "react";
+import { getUserData } from "../../services";
+import useIpAddress from "../../services/useIpAddress";
 import {
   setError,
   setLoading,
@@ -8,13 +10,11 @@ import {
 } from "../../store/actions";
 import { AppContext } from "../../store/StoreProvider";
 
-export const HomePage = () => {
+export const SettingsPage = () => {
   const { state, dispatch } = useContext(AppContext);
-  console.log("🚀 ~ HomePage state:", state);
+  console.log("🚀 ~ SettingsPage state:", state);
 
-  useEffect(() => {
-    
-  }, []);
+  useEffect(() => {}, []);
 
   return <div>Hello HomePage</div>;
 };

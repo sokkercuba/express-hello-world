@@ -1,14 +1,20 @@
-import { createContext, Dispatch, useReducer } from "react";
+import { createContext, Dispatch, useEffect, useReducer } from "react";
+import storeReducer, { StoreState } from "./storeReducer";
+
 import type { StoreProviderProps } from "./StoreProviderProps";
-import storeReducer, { initialState, StoreState } from "./storeReducer";
+import { getStoredState, setStoredState } from "./localStorage";
 
 const AppContext = createContext<{
   state: StoreState;
   dispatch: Dispatch<any>;
-}>({ state: initialState, dispatch: () => null });
+}>({ state: getStoredState(), dispatch: () => null });
 
 const StoreProvider = ({ children }: StoreProviderProps) => {
-  const [state, dispatch] = useReducer(storeReducer, initialState);
+  const [state, dispatch] = useReducer(storeReducer, getStoredState());
+
+  useEffect(() => {
+    setStoredState(state);
+  }, [state]);
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

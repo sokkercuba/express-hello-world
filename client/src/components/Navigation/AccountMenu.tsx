@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
@@ -12,19 +13,19 @@ import Settings from "@mui/icons-material/Settings";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import { AppContext } from "../../store/StoreProvider";
+import { parseSokkerErrors } from "../../services/apiErrorHandler";
 import {
   setError,
-  setLoading,
   setLogin,
-  setUsername,
+  setLoading,
+  setErrorMsg,
 } from "../../store/actions";
-import { handleLogOut } from "../../services";
-import useIpAddress from "../../services/useIpAddress";
+
+const VITE_SOKKER_URL = import.meta.env.VITE_SOKKER_URL;
 
 export default function AccountMenu() {
   const { state, dispatch } = useContext(AppContext);
   const { username } = state;
-  const ip = useIpAddress();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
@@ -39,22 +40,29 @@ export default function AccountMenu() {
 
   const handleLogout = async () => {
     setAnchorEl(null);
-    setLoading(dispatch, true);
+    // setLoading(dispatch, true);
 
-    const apiData = await handleLogOut(username, ip);
+    // await axios
+    //   .get(`${VITE_SOKKER_URL}/index/action/start`)
+    //   .then((response) => {
+    //     const { status, data } = response || null;
+    //     console.log("🚀 ~ response:", response);
 
-    setLoading(dispatch, false);
+    //     if (status === 200 && !data?.error) {
+    //       setLogin(dispatch, false);
+    //     }
+    //     if (data?.error) {
+    //       setError(dispatch, true);
+    //       setErrorMsg(dispatch, parseSokkerErrors(data?.error));
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log("🚀 ~ error:", error);
+    //     setError(dispatch, true);
+    //     setErrorMsg(dispatch, error?.message || error);
+    //   });
 
-    console.log("🚀 ~ handleLogoutData:", apiData);
-
-    const { status, statusText, data } = apiData;
-
-    if (status === 200) {
-      setLogin(dispatch, false);
-      setUsername(dispatch, "");
-    } else {
-      setError(dispatch, data?.error || statusText);
-    }
+    // setLoading(dispatch, false);
   };
 
   return (
@@ -87,6 +95,7 @@ export default function AccountMenu() {
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
+        disableScrollLock={true}
         onClose={handleClose}
         onClick={handleClose}
         PaperProps={{

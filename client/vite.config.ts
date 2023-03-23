@@ -4,7 +4,11 @@ import { defineConfig, splitVendorChunkPlugin } from "vite";
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      babel: {
+        babelrc: true,
+      },
+    }),
     splitVendorChunkPlugin(),
     VitePWA({ registerType: "autoUpdate" }),
   ],
