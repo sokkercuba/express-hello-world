@@ -4,9 +4,12 @@ import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
 
 import { HomePage } from "../pages";
 import { Footer } from "../components";
+import PrivateRoute from "./PrivateRoute";
 import AppFallback from "../components/AppFallback";
 import { ResponsiveDrawer } from "../components/Navigation";
 
+const SignIn = lazy(() => import("../components/SignIn"));
+const TeamPage = lazy(() => import("../pages/team/TeamPage"));
 const AboutPage = lazy(() => import("../pages/about/AboutPage"));
 const ContactPage = lazy(() => import("../pages/contact/ContactPage"));
 const NotFoundPage = lazy(() => import("../pages/404/NotFoundPage"));
@@ -22,7 +25,12 @@ export const AppRouter = () => (
   <BrowserRouter>
     <ResponsiveDrawer>
       <Box
-        sx={{ display: "flex", flexDirection: "column", height: "100vh", p: 3 }}
+        sx={{
+          p: 3,
+          display: "flex",
+          height: "100vh",
+          flexDirection: "column",
+        }}
       >
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -51,6 +59,26 @@ export const AppRouter = () => (
               </SuspenseWrapper>
             }
           />
+
+          {/* <Route
+            path="/login"
+            element={
+              <SuspenseWrapper>
+                <SignIn />
+              </SuspenseWrapper>
+            }
+          /> */}
+
+          <Route path="/team" element={<PrivateRoute />}>
+            <Route
+              path="/team"
+              element={
+                <SuspenseWrapper>
+                  <TeamPage />
+                </SuspenseWrapper>
+              }
+            />
+          </Route>
 
           <Route path="*" element={<Navigate to="/404" />} />
         </Routes>

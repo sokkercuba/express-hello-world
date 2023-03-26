@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
@@ -6,24 +5,19 @@ import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom";
 import Logout from "@mui/icons-material/Logout";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Settings from "@mui/icons-material/Settings";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import PersonAdd from "@mui/icons-material/PersonAdd";
 import { AppContext } from "../../store/StoreProvider";
-import { parseSokkerErrors } from "../../services/apiErrorHandler";
-import {
-  setError,
-  setLogin,
-  setLoading,
-  setErrorMsg,
-} from "../../store/actions";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 
-const VITE_SOKKER_URL = import.meta.env.VITE_SOKKER_URL;
+import { handleLogOut } from "../../services/sokkerApiServices";
 
 export default function AccountMenu() {
+  const navigate = useNavigate();
   const { state, dispatch } = useContext(AppContext);
   const { username } = state;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -40,29 +34,8 @@ export default function AccountMenu() {
 
   const handleLogout = async () => {
     setAnchorEl(null);
-    // setLoading(dispatch, true);
 
-    // await axios
-    //   .get(`${VITE_SOKKER_URL}/index/action/start`)
-    //   .then((response) => {
-    //     const { status, data } = response || null;
-    //     console.log("🚀 ~ response:", response);
-
-    //     if (status === 200 && !data?.error) {
-    //       setLogin(dispatch, false);
-    //     }
-    //     if (data?.error) {
-    //       setError(dispatch, true);
-    //       setErrorMsg(dispatch, parseSokkerErrors(data?.error));
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log("🚀 ~ error:", error);
-    //     setError(dispatch, true);
-    //     setErrorMsg(dispatch, error?.message || error);
-    //   });
-
-    // setLoading(dispatch, false);
+    return await handleLogOut(dispatch);
   };
 
   return (
@@ -80,21 +53,23 @@ export default function AccountMenu() {
         </Typography>
         <Tooltip title="Account settings">
           <IconButton
-            onClick={handleClick}
             size="small"
             sx={{ ml: 2 }}
-            aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
+            onClick={handleClick}
             aria-expanded={open ? "true" : undefined}
+            aria-controls={open ? "account-menu" : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}>
+              {username.charAt(0).toLocaleUpperCase()}
+            </Avatar>
           </IconButton>
         </Tooltip>
       </Box>
       <Menu
-        anchorEl={anchorEl}
-        id="account-menu"
         open={open}
+        id="account-menu"
+        anchorEl={anchorEl}
         disableScrollLock={true}
         onClose={handleClose}
         onClick={handleClose}
@@ -127,19 +102,18 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> My account
+        <MenuItem
+          onClick={() => {
+            navigate("/update");
+            return handleClose;
+          }}
+        >
+          <ListItemIcon>
+            <CloudDownloadIcon fontSize="small" />
+          </ListItemIcon>
+          Update
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Settings fontSize="small" />

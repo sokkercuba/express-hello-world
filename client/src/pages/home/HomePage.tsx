@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { getUserData } from "../../services/sokkerApiServices";
 import {
   setError,
   setLoading,
@@ -10,11 +11,11 @@ import { AppContext } from "../../store/StoreProvider";
 
 export const HomePage = () => {
   const { state, dispatch } = useContext(AppContext);
-  console.log("🚀 ~ HomePage state:", state);
 
-  useEffect(() => {
-    
-  }, []);
+  // useEffect(() => {
+  //   const fetchUser = async () => await getUserData(dispatch);
+  //   fetchUser();
+  // }, []);
 
   return <div>Hello HomePage</div>;
 };

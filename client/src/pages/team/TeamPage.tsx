@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import SquadPageTabs from "./PageTabs";
 
 export default function PlayersPage() {
   //const players = usePlayersSearch();
@@ -7,5 +8,6 @@ export default function PlayersPage() {
   useEffect(() => {
     //dispatch({ type: types.setPlayers, payload: players });
   }, []);
-  return <div>Hello Players</div>;
+
+  return <SquadPageTabs />;
 }

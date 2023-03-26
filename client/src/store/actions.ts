@@ -20,7 +20,7 @@ const setUsername = (dispatch: Dispatch<StoreAction>, payload: string) => {
   dispatch({ type: StoreActionTypes.SET_USERNAME, payload });
 };
 
-const setLogin = (dispatch: Dispatch<StoreAction>, payload: boolean) => {
+const setLogin = async (dispatch: Dispatch<StoreAction>, payload: boolean) => {
   dispatch({ type: StoreActionTypes.SET_LOGIN, payload });
 };
 

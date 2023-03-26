@@ -1,5 +1,12 @@
+import { ScrollToTopOnMount } from "../../components/";
+
 const AboutPage = () => {
-  return <div>Hello about</div>;
+  return (
+    <>
+      <ScrollToTopOnMount />
+      <div>Hello about</div>
+    </>
+  );
 };
 
 export default AboutPage;

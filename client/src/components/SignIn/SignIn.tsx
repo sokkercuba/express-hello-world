@@ -1,9 +1,11 @@
-import axios from "axios";
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import { Box } from "@mui/material/";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
-import { LoadingButton } from "@mui/lab";
+import Cookies from "universal-cookie";
+import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
+import { Navigate } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
@@ -11,26 +13,18 @@ import Typography from "@mui/material/Typography";
 import { AppContext } from "../../store/StoreProvider";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
-import {
-  setError,
-  setErrorMsg,
-  setLoading,
-  setLogin,
-  setUsername,
-} from "../../store/actions";
-import { parseSokkerErrors } from "../../services/apiErrorHandler";
-
-const VITE_SOKKER_URL = import.meta.env.VITE_SOKKER_URL;
+import { getUserData, handleLogin } from "../../services/sokkerApiServices";
 
 export default function SignIn() {
   const { state, dispatch } = useContext(AppContext);
-  const { loading } = state;
+  const { loggedIn } = state;
   const [checked, setChecked] = useState(false);
 
-  useEffect(() => {
-    console.log("🚀 ~ state:", state);
-  }, [state]);
+  // useEffect(() => {
+  //   console.log("🚀 ~ state:", state);
+  // }, [state]);
+
+  if (loggedIn) return <Navigate to="/" />;
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -40,33 +34,23 @@ export default function SignIn() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    setLoading(dispatch, true);
-
-    await axios
-      .post(`${VITE_SOKKER_URL}/api/auth/login`, {
+    const result = await handleLogin(
+      {
         login: formData.get("email") as string,
         password: formData.get("password") as string,
         remember: checked,
-      })
-      .then((response) => {
-        const { status, data } = response || null;
-        console.log("🚀 ~ response:", response);
+      },
+      dispatch
+    );
 
-        if (status === 200 && !data?.error) {
-          setLogin(dispatch, true);
-        }
-        if (data?.error) {
-          setError(dispatch, true);
-          setErrorMsg(dispatch, parseSokkerErrors(data?.error));
-        }
-      })
-      .catch((error) => {
-        console.log("🚀 ~ error:", error);
-        setError(dispatch, true);
-        setErrorMsg(dispatch, error?.message || error);
-      });
+    const cookies = new Cookies();
+    console.log("🚀 ~ cookies:", cookies);
+    const userID = cookies.get("PHPSESSID");
+    console.log("🚀 ~ userID:", userID);
 
-    setLoading(dispatch, false);
+    if (result) {
+      await getUserData(dispatch);
+    }
   };
 
   return (
@@ -117,15 +101,14 @@ export default function SignIn() {
             }
           />
 
-          <LoadingButton
+          <Button
             fullWidth
             type="submit"
-            loading={loading}
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
             Sign In
-          </LoadingButton>
+          </Button>
           <Grid container>
             <Grid item xs>
               <Link

@@ -1,42 +1,71 @@
 {
-  "_vendor-6f197fd2.js": {
-    "file": "assets/vendor-6f197fd2.js"
+  "_ScrollToTopOnMount-4ddc0167.js": {
+    "file": "assets/ScrollToTopOnMount-4ddc0167.js",
+    "imports": [
+      "_vendor-c364c43c.js"
+    ]
+  },
+  "_vendor-c364c43c.js": {
+    "file": "assets/vendor-c364c43c.js"
   },
   "index.html": {
     "dynamicImports": [
+      "src/components/SignIn/index.ts",
+      "src/pages/team/TeamPage.tsx",
       "src/pages/about/AboutPage.tsx",
       "src/pages/contact/ContactPage.tsx",
       "src/pages/404/NotFoundPage.tsx"
     ],
-    "file": "assets/index-ce03a638.js",
+    "file": "assets/index-7a28315a.js",
     "imports": [
-      "_vendor-6f197fd2.js"
+      "_vendor-c364c43c.js"
     ],
     "isEntry": true,
     "src": "index.html"
   },
-  "src/pages/404/NotFoundPage.tsx": {
-    "file": "assets/NotFoundPage-deba6391.js",
+  "src/components/SignIn/index.ts": {
+    "file": "assets/index-d576e864.js",
     "imports": [
-      "_vendor-6f197fd2.js"
+      "_vendor-c364c43c.js",
+      "index.html"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/components/SignIn/index.ts"
+  },
+  "src/pages/404/NotFoundPage.tsx": {
+    "file": "assets/NotFoundPage-8cc22a35.js",
+    "imports": [
+      "_vendor-c364c43c.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/404/NotFoundPage.tsx"
   },
   "src/pages/about/AboutPage.tsx": {
-    "file": "assets/AboutPage-4156d849.js",
+    "file": "assets/AboutPage-6f2913f3.js",
     "imports": [
-      "_vendor-6f197fd2.js"
+      "_vendor-c364c43c.js",
+      "index.html",
+      "_ScrollToTopOnMount-4ddc0167.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/about/AboutPage.tsx"
   },
   "src/pages/contact/ContactPage.tsx": {
-    "file": "assets/ContactPage-e6939682.js",
+    "file": "assets/ContactPage-a99d30c1.js",
     "imports": [
-      "_vendor-6f197fd2.js"
+      "_vendor-c364c43c.js",
+      "index.html",
+      "_ScrollToTopOnMount-4ddc0167.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/contact/ContactPage.tsx"
+  },
+  "src/pages/team/TeamPage.tsx": {
+    "file": "assets/TeamPage-501b1ea8.js",
+    "imports": [
+      "_vendor-c364c43c.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/team/TeamPage.tsx"
   }
 }
