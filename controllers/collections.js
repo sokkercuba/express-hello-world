@@ -1,4 +1,5 @@
-const db = require("@cyclic.sh/dynamodb");
+const CyclicDb = require("@cyclic.sh/dynamodb");
+const db = CyclicDb("fantastic-shirt-mothCyclicDB");
 
 const setCollection = async (req, res) => {
   const { params, body } = req;
