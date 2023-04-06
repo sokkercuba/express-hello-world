@@ -1,14 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const routes = require("./routes");
+const express = require('express')
+const router = express.Router()
+const routes = require('./routes')
+const authRoutes = require('./auth')
 
-/* GET home page. */
-router.get("/api/v1", function (req, res, next) {
-  res.send(
-    "<p>This is an auxiliary API for Sokker Helper chrome extension requests</p>"
-  );
-});
+/* Private route */
+// router.route("/api/v1").get(protect, getPrivateRoute);
 
-router.use("/api/v1", routes);
+router.use('/api/v1', routes)
+router.use('/api/auth/v1', authRoutes)
 
-module.exports = router;
+module.exports = router

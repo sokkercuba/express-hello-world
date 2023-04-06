@@ -1,26 +1,17 @@
-const router = require("express").Router();
-const userController = require("../controllers/users");
-const dbController = require("../controllers/collections");
+const router = require('express').Router()
+const dbController = require('../controllers/collections')
 
+/* ### Cyclic CRUD ### */
 // Create or Update a collection
-router.route("/:col/:key").post(dbController.setCollection);
+router.route('/:col/:key').post(dbController.setCollection)
 
 // Delete a collection
-router.route("/:col/:key").delete(dbController.deleteCollection);
+router.route('/:col/:key').delete(dbController.deleteCollection)
 
 // Get a single collection
-router.route("/:col/:key").get(dbController.getCollection);
+router.route('/:col/:key').get(dbController.getCollection)
 
 // Get a full listing of collections
-router.route("/:col").get(dbController.getCollections);
+router.route('/:col').get(dbController.getCollections)
 
-// Handle external authentication
-router.route("/login").post(userController.handleLogin);
-
-// Handle Logout
-router.route("/logout").get(userController.handleLogOut);
-
-// Get current user data
-router.route("/current").get(userController.getUser);
-
-module.exports = router;
+module.exports = router
