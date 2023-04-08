@@ -1,12 +1,12 @@
 {
-  "_ScrollToTopOnMount-4ddc0167.js": {
-    "file": "assets/ScrollToTopOnMount-4ddc0167.js",
+  "_ScrollToTopOnMount-92105b40.js": {
+    "file": "assets/ScrollToTopOnMount-92105b40.js",
     "imports": [
-      "_vendor-c364c43c.js"
+      "_vendor-d93f30fb.js"
     ]
   },
-  "_vendor-c364c43c.js": {
-    "file": "assets/vendor-c364c43c.js"
+  "_vendor-d93f30fb.js": {
+    "file": "assets/vendor-d93f30fb.js"
   },
   "index.html": {
     "dynamicImports": [
@@ -16,54 +16,54 @@
       "src/pages/contact/ContactPage.tsx",
       "src/pages/404/NotFoundPage.tsx"
     ],
-    "file": "assets/index-7a28315a.js",
+    "file": "assets/index-faa04d4e.js",
     "imports": [
-      "_vendor-c364c43c.js"
+      "_vendor-d93f30fb.js"
     ],
     "isEntry": true,
     "src": "index.html"
   },
   "src/components/SignIn/index.ts": {
-    "file": "assets/index-d576e864.js",
+    "file": "assets/index-c667adab.js",
     "imports": [
-      "_vendor-c364c43c.js",
+      "_vendor-d93f30fb.js",
       "index.html"
     ],
     "isDynamicEntry": true,
     "src": "src/components/SignIn/index.ts"
   },
   "src/pages/404/NotFoundPage.tsx": {
-    "file": "assets/NotFoundPage-8cc22a35.js",
+    "file": "assets/NotFoundPage-42fca210.js",
     "imports": [
-      "_vendor-c364c43c.js"
+      "_vendor-d93f30fb.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/404/NotFoundPage.tsx"
   },
   "src/pages/about/AboutPage.tsx": {
-    "file": "assets/AboutPage-6f2913f3.js",
+    "file": "assets/AboutPage-c7c7a440.js",
     "imports": [
-      "_vendor-c364c43c.js",
+      "_vendor-d93f30fb.js",
       "index.html",
-      "_ScrollToTopOnMount-4ddc0167.js"
+      "_ScrollToTopOnMount-92105b40.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/about/AboutPage.tsx"
   },
   "src/pages/contact/ContactPage.tsx": {
-    "file": "assets/ContactPage-a99d30c1.js",
+    "file": "assets/ContactPage-3cd68e01.js",
     "imports": [
-      "_vendor-c364c43c.js",
+      "_vendor-d93f30fb.js",
       "index.html",
-      "_ScrollToTopOnMount-4ddc0167.js"
+      "_ScrollToTopOnMount-92105b40.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/contact/ContactPage.tsx"
   },
   "src/pages/team/TeamPage.tsx": {
-    "file": "assets/TeamPage-501b1ea8.js",
+    "file": "assets/TeamPage-66caad7c.js",
     "imports": [
-      "_vendor-c364c43c.js"
+      "_vendor-d93f30fb.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/team/TeamPage.tsx"
