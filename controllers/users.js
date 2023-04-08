@@ -13,23 +13,23 @@ const checkLogin = async (req, res) => {
     req.session.views = req.session.views + 1 || 1
     return sendResponse(res, 200, { success: true })
   } else {
-    return sendResponse(res, 200, { success: false })
+    return sendResponse(res, 401, { success: false })
   }
 }
 
 const handleLogin = async (req, res, next) => {
-  const { email, password } = req.body
+  const { login, password } = req.body
 
-  // Check if email and password is provided
-  if (!email || !password) {
+  // Check if login and password is provided
+  if (!login || !password) {
     return sendResponse(res, 400, {
-      error: 'Please provide an email and password'
+      error: 'Please provide an username and password'
     })
   }
 
   try {
-    // Check that user exists by email
-    const userItem = await users.get(email)
+    // Check that user exists by username
+    const userItem = await users.get(login)
     const user = userItem?.props
 
     if (!user) {
@@ -39,7 +39,7 @@ const handleLogin = async (req, res, next) => {
     // Check that password match
     if (auth.testPassword(password, user.salt, user.hashedPassword)) {
       req.session.logged_in = true
-      req.session.user = user
+      req.session.user = login
       req.session.save(function (error) {
         console.log('🚀 ~ session save: ', error)
       })
@@ -47,28 +47,34 @@ const handleLogin = async (req, res, next) => {
       return sendResponse(res, 401, { error: 'Invalid credentials' })
     }
 
-    sendResponse(res, 200, { success: true, user })
-  } catch (err) {
-    next(err)
+    return sendResponse(res, 200, { success: true, user })
+  } catch (error) {
+    return sendResponse(res, 500, {
+      error
+    })
   }
 }
 
 const handleLogOut = async (req, res) => {
   req.session.destroy(function (error) {
-    if (error) return sendResponse(res, 500, { error })
+    if (error) {
+      return sendResponse(res, 500, {
+        error: 'Well, this is unexpected, please try again.'
+      })
+    }
     return sendResponse(res, 200, { success: true })
   })
 }
 
 // @desc    Register user
 const handleSignup = async (req, res, next) => {
-  const { email, password } = req.body
+  const { login, password } = req.body
 
-  const existingUser = await users.get(email)
+  const existingUser = await users.get(login)
 
   if (existingUser) {
     return sendResponse(res, 403, {
-      error: 'user with that email is already registered'
+      error: 'the username provided is already registered'
     })
   }
 
@@ -76,14 +82,14 @@ const handleSignup = async (req, res, next) => {
   const uid = 'uid_' + Math.random().toString().slice(2)
   const uProps = {
     uid,
-    email,
+    login,
     salt,
     status: 'new',
     hashedPassword: hashed
   }
 
   try {
-    const user = await users.set(email, uProps, { $index: ['uid'] })
+    const user = await users.set(login, uProps, { $index: ['uid'] })
     if (!user) {
       return sendResponse(res, 500, {
         error: 'Error while creating a new user'
@@ -91,18 +97,20 @@ const handleSignup = async (req, res, next) => {
     }
 
     return sendResponse(res, 200, { success: true, user: user.props })
-  } catch (err) {
-    console.log('🚀 ~ signup err:', err)
-    next(err)
+  } catch (error) {
+    console.log('🚀 ~ signup err:', error)
+    return sendResponse(res, 500, {
+      error
+    })
   }
 }
 
 const handleChangePassword = async (req, res, next) => {
-  const { email, password } = req.body
+  const { login, password } = req.body
   const { salt, hashed } = auth.securePassword(password)
 
   try {
-    const { props: oldUser } = await users.get(email)
+    const { props: oldUser } = await users.get(login)
     const uProps = {
       ...oldUser,
       salt,
@@ -110,12 +118,14 @@ const handleChangePassword = async (req, res, next) => {
       hashedPassword: hashed
     }
 
-    await users.set(email, { salt, status: 'updated', hashedPassword: hashed })
+    await users.set(login, { salt, status: 'updated', hashedPassword: hashed })
 
     return sendResponse(res, 200, { success: true, user: uProps })
-  } catch (err) {
-    console.log('🚀 ~ changepassword err:', err)
-    next(err)
+  } catch (error) {
+    console.log('🚀 ~ changepassword err:', error)
+    return sendResponse(res, 500, {
+      error
+    })
   }
 }
 

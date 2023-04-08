@@ -1,25 +1,26 @@
-import { Box } from "@mui/material/";
-import { lazy, ReactNode, Suspense } from "react";
-import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
+import { Box } from '@mui/material/'
+import { lazy, ReactNode, Suspense } from 'react'
+import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom'
 
-import { HomePage } from "../pages";
-import { Footer } from "../components";
-import PrivateRoute from "./PrivateRoute";
-import AppFallback from "../components/AppFallback";
-import { ResponsiveDrawer } from "../components/Navigation";
+import { HomePage } from '../pages'
+import { Footer } from '../components'
+import PrivateRoute from './PrivateRoute'
+import AppFallback from '../components/AppFallback'
+import { ResponsiveDrawer } from '../components/Navigation'
 
-const SignIn = lazy(() => import("../components/SignIn"));
-const TeamPage = lazy(() => import("../pages/team/TeamPage"));
-const AboutPage = lazy(() => import("../pages/about/AboutPage"));
-const ContactPage = lazy(() => import("../pages/contact/ContactPage"));
-const NotFoundPage = lazy(() => import("../pages/404/NotFoundPage"));
+const SignIn = lazy(() => import('../components/SignIn'))
+// const SignUp = lazy(() => import('../components/SignUp'))
+const TeamPage = lazy(() => import('../pages/team/TeamPage'))
+const AboutPage = lazy(() => import('../pages/about/AboutPage'))
+const ContactPage = lazy(() => import('../pages/contact/ContactPage'))
+const NotFoundPage = lazy(() => import('../pages/404/NotFoundPage'))
 
 interface SuspenseProps {
-  children: ReactNode;
+  children: ReactNode
 }
 const SuspenseWrapper = ({ children }: SuspenseProps) => (
   <Suspense fallback={<AppFallback />}>{children}</Suspense>
-);
+)
 
 export const AppRouter = () => (
   <BrowserRouter>
@@ -27,9 +28,9 @@ export const AppRouter = () => (
       <Box
         sx={{
           p: 3,
-          display: "flex",
-          height: "100vh",
-          flexDirection: "column",
+          display: 'flex',
+          height: '100vh',
+          flexDirection: 'column'
         }}
       >
         <Routes>
@@ -60,11 +61,20 @@ export const AppRouter = () => (
             }
           />
 
-          {/* <Route
+          <Route
             path="/login"
             element={
               <SuspenseWrapper>
                 <SignIn />
+              </SuspenseWrapper>
+            }
+          />
+
+          {/* <Route
+            path="/signup"
+            element={
+              <SuspenseWrapper>
+                <SignUp />
               </SuspenseWrapper>
             }
           /> */}
@@ -86,4 +96,4 @@ export const AppRouter = () => (
       <Footer />
     </ResponsiveDrawer>
   </BrowserRouter>
-);
+)

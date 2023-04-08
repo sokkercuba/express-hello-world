@@ -1,52 +1,67 @@
-import { Buffer } from "buffer/";
-import apiClient from "./apiClient";
-
-const API_USER = import.meta.env.API_USER;
-const API_PASSW = import.meta.env.API_PASSW;
-const API_URL = import.meta.env.VITE_API_URL;
-
-const authorization =
-  "Basic " + Buffer.from(API_USER + ":" + API_PASSW).toString("base64");
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Dispatch } from 'react'
+import apiClient from './apiClient'
+import { StoreAction } from '../store/storeReducer'
+import { setError, setLoading, setErrorMsg } from '../store/actions'
+import { SokkerCredentials } from '../types/user'
 
 interface ApiParams {
-  col: string;
-  key: string;
+  col: string
+  key: string
 }
 
 export const setCollection = (params: ApiParams, body: any) => {
-  const { col, key } = params;
-
-  return apiClient.post(`${API_URL}/${col}/${key}`, body, {
-    headers: {
-      Authorization: authorization,
-    },
-  });
-};
+  const { col, key } = params
+  return apiClient('POST', `/api/v1/${col}/${key}`, body)
+}
 
 export const deleteCollection = (params: ApiParams) => {
-  const { col, key } = params || null;
-
-  return apiClient.delete(`${API_URL}/${col}/${key}`, {
-    headers: {
-      Authorization: authorization,
-    },
-  });
-};
+  const { col, key } = params || null
+  return apiClient('DELETE', `/api/v1/${col}/${key}`)
+}
 
 export const getCollection = (params: ApiParams) => {
-  const { col, key } = params || null;
-
-  return apiClient.get(`${API_URL}/${col}/${key}`, {
-    headers: {
-      Authorization: authorization,
-    },
-  });
-};
+  const { col, key } = params || null
+  return apiClient('GET', `/api/v1/${col}/${key}`)
+}
 
 export const getCollections = (col: string) => {
-  return apiClient.get(`${API_URL}/${col}`, {
-    headers: {
-      Authorization: authorization,
-    },
-  });
-};
+  return apiClient('GET', `/api/v1/${col}`)
+}
+
+export const handleApiRequest = (
+  query: string,
+  method: string,
+  dispatch: Dispatch<StoreAction>,
+  credentials?: SokkerCredentials
+) => {
+  setLoading(dispatch, true)
+
+  const result = apiClient(method, query, credentials)
+    .then((response) => {
+      const { status, data } = response || null
+
+      if (status === 200 && !data?.error) {
+        console.log('🚀 ~ handleApiRequest success:', response)
+        setError(dispatch, false)
+        setErrorMsg(dispatch, '')
+        return { ...data, status }
+      }
+      if (data?.error) {
+        console.log('🚀 ~ handleApiRequest fail:', response)
+        setError(dispatch, true)
+        setErrorMsg(dispatch, data?.error)
+        return { ...data, status }
+      }
+    })
+    .catch((error) => {
+      const { data, status } = error.response || null
+      console.log('🚀 ~ handleApiRequest error:', error)
+      setError(dispatch, true)
+      setErrorMsg(dispatch, data?.error || error?.message)
+      return { ...data, status }
+    })
+    .finally(() => setLoading(dispatch, false))
+
+  return result
+}

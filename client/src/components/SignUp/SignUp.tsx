@@ -1,38 +1,28 @@
-import { ChangeEvent, FormEvent, useContext, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import { Box } from '@mui/material/'
 import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
 import Button from '@mui/material/Button'
 import Avatar from '@mui/material/Avatar'
-import { Navigate } from 'react-router-dom'
-import Checkbox from '@mui/material/Checkbox'
+import { enqueueSnackbar } from 'notistack'
+import { useNavigate } from 'react-router-dom'
 import TextField from '@mui/material/TextField'
-// import { useNavigate } from 'react-router-dom'
 import Container from '@mui/material/Container'
+import IconButton from '@mui/material/IconButton'
 import { handleApiRequest } from '../../services'
 import Typography from '@mui/material/Typography'
-import IconButton from '@mui/material/IconButton'
 import FormControl from '@mui/material/FormControl'
 import { AppContext } from '../../store/StoreProvider'
 import Visibility from '@mui/icons-material/Visibility'
 import InputAdornment from '@mui/material/InputAdornment'
-import { setLogin, setUsername } from '../../store/actions'
-import FormControlLabel from '@mui/material/FormControlLabel'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 
-export default function SignIn() {
-  const { state, dispatch } = useContext(AppContext)
-  const { loggedIn } = state
-  // const navigate = useNavigate()
-  const [checked, setChecked] = useState(false)
+export default function SignUp() {
+  const { dispatch } = useContext(AppContext)
+  const navigate = useNavigate()
+  const [error, setInputError] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
-
-  // useEffect(() => {
-  //   console.log("🚀 ~ state:", state);
-  // }, [state]);
-
-  if (loggedIn) return <Navigate to="/" />
 
   const handleClickShowPassword = () => setShowPassword((show) => !show)
   const handleMouseDownPassword = (
@@ -41,30 +31,34 @@ export default function SignIn() {
     event.preventDefault()
   }
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked)
-  }
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
+    const login = formData.get('login') as string
+    const password = formData.get('password') as string
+    const confirmpassword = formData.get('confirmpassword') as string
+
+    if (password !== confirmpassword) {
+      setInputError(true)
+      return
+    }
 
     const data = await handleApiRequest(
-      '/api/auth/v1/login',
+      '/api/auth/v1/signup',
       'POST',
       dispatch,
-      {
-        login: formData.get('login') as string,
-        password: formData.get('password') as string
-      }
+      { login, password }
     )
 
-    const { user, error, status } = data
+    const { error, status } = data
 
     if (error && status !== 200) return
 
-    setLogin(dispatch, true)
-    setUsername(dispatch, user.login)
+    enqueueSnackbar('Your user has been successfully created.', {
+      variant: 'success'
+    })
+
+    navigate('/login')
   }
 
   return (
@@ -81,7 +75,7 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign Up
         </Typography>
         <Box
           component="form"
@@ -99,17 +93,30 @@ export default function SignIn() {
               label="Username"
               autoComplete="Username"
             />
-
             <TextField
               required
               fullWidth
               id="password"
               margin="normal"
               name="password"
+              type="password"
               label="Password"
               autoComplete="password"
+            />
+
+            <TextField
+              required
+              fullWidth
+              error={error}
+              margin="normal"
+              id="confirmpassword"
+              name="confirmpassword"
+              label="Confirm Password"
+              autoComplete="password"
+              onFocus={() => setInputError(false)}
               type={showPassword ? 'text' : 'password'}
               sx={{ backgroundColor: 'rgb(232,240,254)' }}
+              helperText={error ? 'Passwords did not match' : ''}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -125,36 +132,26 @@ export default function SignIn() {
                 )
               }}
             />
-
-            <FormControlLabel
-              label="Remember me"
-              control={
-                <Checkbox
-                  color="primary"
-                  checked={checked}
-                  onChange={handleChange}
-                />
-              }
-            />
           </FormControl>
+
           <Button
             fullWidth
             type="submit"
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Sign Me Up
           </Button>
         </Box>
         <Grid container>
           <Grid item typography="body2">
-            Don't have an account?{' '}
+            Already have an account?{' '}
             <Link
               variant="body1"
               component="button"
-              // onClick={() => navigate('/signup')}
+              onClick={() => navigate('/login')}
             >
-              Sign Up
+              Sign In
             </Link>
           </Grid>
         </Grid>

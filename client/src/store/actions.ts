@@ -1,41 +1,48 @@
-import { Dispatch } from "react";
-import { UserData } from "../types/UserData";
-import { JuniorData } from "../types/JuniorData";
-import { PlayerData } from "../types/PlayerData";
-import { StoreAction, StoreActionTypes } from "./storeReducer";
+import { Dispatch } from 'react'
+import { enqueueSnackbar } from 'notistack'
+import { UserData } from '../types/UserData'
+import { JuniorData } from '../types/JuniorData'
+import { PlayerData } from '../types/PlayerData'
+import { StoreAction, StoreActionTypes } from './storeReducer'
 
 const setWeek = (dispatch: Dispatch<StoreAction>, payload: number) => {
-  dispatch({ type: StoreActionTypes.SET_WEEK, payload });
-};
+  dispatch({ type: StoreActionTypes.SET_WEEK, payload })
+}
 
 const setError = (dispatch: Dispatch<StoreAction>, payload: boolean) => {
-  dispatch({ type: StoreActionTypes.SET_ERROR, payload });
-};
+  dispatch({ type: StoreActionTypes.SET_ERROR, payload })
+}
 
 const setErrorMsg = (dispatch: Dispatch<StoreAction>, payload: string) => {
-  dispatch({ type: StoreActionTypes.SET_ERROR_MSG, payload });
-};
+  if (payload) enqueueSnackbar(payload, { variant: 'error' })
+
+  dispatch({ type: StoreActionTypes.SET_ERROR_MSG, payload })
+}
 
 const setUsername = (dispatch: Dispatch<StoreAction>, payload: string) => {
-  dispatch({ type: StoreActionTypes.SET_USERNAME, payload });
-};
+  dispatch({ type: StoreActionTypes.SET_USERNAME, payload })
+}
 
-const setLogin = async (dispatch: Dispatch<StoreAction>, payload: boolean) => {
-  dispatch({ type: StoreActionTypes.SET_LOGIN, payload });
-};
+const setLogin = (dispatch: Dispatch<StoreAction>, payload: boolean) => {
+  if (payload) {
+    enqueueSnackbar('You have successfully logged in!', { variant: 'success' })
+  }
+
+  dispatch({ type: StoreActionTypes.SET_LOGIN, payload })
+}
 
 const setUser = (dispatch: Dispatch<StoreAction>, payload: UserData) => {
-  return dispatch({ type: StoreActionTypes.SET_USER, payload });
-};
+  return dispatch({ type: StoreActionTypes.SET_USER, payload })
+}
 
 const setLoading = (dispatch: Dispatch<StoreAction>, payload: boolean) =>
-  dispatch({ type: StoreActionTypes.SET_LOADING, payload });
+  dispatch({ type: StoreActionTypes.SET_LOADING, payload })
 
 const setPlayers = (dispatch: Dispatch<StoreAction>, payload: PlayerData) =>
-  dispatch({ type: StoreActionTypes.SET_PLAYERS, payload });
+  dispatch({ type: StoreActionTypes.SET_PLAYERS, payload })
 
 const setJuniors = (dispatch: Dispatch<StoreAction>, payload: JuniorData) =>
-  dispatch({ type: StoreActionTypes.SET_JUNIORS, payload });
+  dispatch({ type: StoreActionTypes.SET_JUNIORS, payload })
 
 export {
   setWeek,
@@ -46,5 +53,5 @@ export {
   setLoading,
   setPlayers,
   setJuniors,
-  setUsername,
-};
+  setUsername
+}

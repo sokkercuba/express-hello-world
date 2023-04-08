@@ -1,52 +1,52 @@
-import { ReactNode, useContext, useState } from "react";
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import AccountMenu from "./AccountMenu";
-import AppBar from "@mui/material/AppBar";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
-import Toolbar from "@mui/material/Toolbar";
-import { useNavigate } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
-import IconButton from "@mui/material/IconButton";
-import { AppContext } from "../../store/StoreProvider";
+import { ReactNode, useContext, useState } from 'react'
+import Box from '@mui/material/Box'
+import List from '@mui/material/List'
+import AccountMenu from './AccountMenu'
+import AppBar from '@mui/material/AppBar'
+import Drawer from '@mui/material/Drawer'
+import Button from '@mui/material/Button'
+import Divider from '@mui/material/Divider'
+import Toolbar from '@mui/material/Toolbar'
+import { useNavigate } from 'react-router-dom'
+import MenuIcon from '@mui/icons-material/Menu'
+import IconButton from '@mui/material/IconButton'
+import { AppContext } from '../../store/StoreProvider'
 import {
   NavBarItem,
   navBarItems,
   drawerPrivateItems,
-  drawerPublicItems,
-} from "./navItems";
+  drawerPublicItems
+} from './navItems'
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
 interface Props {
-  children?: ReactNode;
+  children?: ReactNode
 }
 
 export function ResponsiveDrawer(props: Props) {
-  const { children } = props;
-  const navigate = useNavigate();
-  const { state } = useContext(AppContext);
-  const { loggedIn } = state;
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const { children } = props
+  const navigate = useNavigate()
+  const { state } = useContext(AppContext)
+  const { loggedIn } = state
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+    setMobileOpen(!mobileOpen)
+  }
 
   const drawer = (
     <div>
       <Toolbar
         sx={{
           backgroundColor: (t) =>
-            t.palette.mode === "light"
+            t.palette.mode === 'light'
               ? t.palette.grey[50]
               : t.palette.grey[900],
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundImage: "url(logo.jpg)",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundImage: 'url(logo.jpg)'
         }}
       />
       <Divider />
@@ -78,15 +78,15 @@ export function ResponsiveDrawer(props: Props) {
         </List>
       )}
     </div>
-  );
+  )
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: 'flex' }}>
       <AppBar
         position="fixed"
         sx={{
           ml: { sm: `${drawerWidth}px` },
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          width: { sm: `calc(100% - ${drawerWidth}px)` }
         }}
       >
         <Toolbar>
@@ -95,19 +95,19 @@ export function ResponsiveDrawer(props: Props) {
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ mr: 2, display: { sm: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {navBarItems.map(({ value, path }) => (
               <Button
                 key={value}
                 onClick={() => navigate(path)}
                 sx={{
-                  color: "white",
-                  display: "block",
-                  fontWeight: "bold",
+                  color: 'white',
+                  display: 'block',
+                  fontWeight: 'bold'
                 }}
               >
                 {value}
@@ -116,11 +116,22 @@ export function ResponsiveDrawer(props: Props) {
           </Box>
           <Box sx={{ flexGrow: 1 }} />
 
-          {loggedIn && (
-            <Box>
+          <Box>
+            {loggedIn ? (
               <AccountMenu />
-            </Box>
-          )}
+            ) : (
+              <Button
+                onClick={() => navigate('/login')}
+                sx={{
+                  color: 'white',
+                  display: 'block',
+                  fontWeight: 'bold'
+                }}
+              >
+                LOGIN
+              </Button>
+            )}
+          </Box>
         </Toolbar>
       </AppBar>
       <Box
@@ -134,14 +145,14 @@ export function ResponsiveDrawer(props: Props) {
           disableScrollLock={true}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': {
               width: drawerWidth,
-              boxSizing: "border-box",
-            },
+              boxSizing: 'border-box'
+            }
           }}
         >
           {drawer}
@@ -149,11 +160,11 @@ export function ResponsiveDrawer(props: Props) {
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: "none", sm: "block" },
-            "& .MuiDrawer-paper": {
+            display: { xs: 'none', sm: 'block' },
+            '& .MuiDrawer-paper': {
               width: drawerWidth,
-              boxSizing: "border-box",
-            },
+              boxSizing: 'border-box'
+            }
           }}
           open
         >
@@ -164,12 +175,12 @@ export function ResponsiveDrawer(props: Props) {
         component="main"
         sx={{
           flexGrow: 1,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          width: { sm: `calc(100% - ${drawerWidth}px)` }
         }}
       >
         <Toolbar />
         {children}
       </Box>
     </Box>
-  );
+  )
 }
