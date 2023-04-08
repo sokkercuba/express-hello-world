@@ -19,7 +19,6 @@
     "@cyclic.sh/dynamodb": "^0.0.33",
     "@cyclic.sh/session-store": "^0.0.17",
     "aws-sdk": "^2.1351.0",
-    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.3",
     "helmet": "^6.0.1",

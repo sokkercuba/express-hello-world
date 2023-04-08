@@ -1,1 +1,0 @@
-import{j as o,F as r,a}from"./vendor-d93f30fb.js";import"./index-faa04d4e.js";import{S as s}from"./ScrollToTopOnMount-92105b40.js";const t=()=>o(r,{children:[a(s,{}),a("div",{children:"Hello contact page"})]});export{t as default};
