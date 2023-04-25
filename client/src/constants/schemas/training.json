@@ -1,5 +1,8 @@
 {
-  "$ref": "#/definitions/Training",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/Training"
+  },
   "definitions": {
     "Training": {
       "type": "object",
@@ -123,7 +126,7 @@
           "type": "integer"
         },
         "name": {
-          "type": "string"
+          "$ref": "#/definitions/Name"
         }
       },
       "required": ["code", "name"],
@@ -168,11 +171,19 @@
           "type": "integer"
         },
         "currency": {
-          "type": "string"
+          "$ref": "#/definitions/Currency"
         }
       },
       "required": ["currency", "value"],
       "title": "PlayerValue"
+    },
+    "Name": {
+      "type": "string",
+      "title": "Name"
+    },
+    "Currency": {
+      "type": "string",
+      "title": "Currency"
     }
   }
 }

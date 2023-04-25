@@ -19,7 +19,7 @@
       "src/pages/addon/AddonPage.tsx",
       "src/pages/addon/AddonPrivacy.tsx"
     ],
-    "file": "assets/index-e18e5992.js",
+    "file": "assets/index-5ff6a4a8.js",
     "imports": [
       "_vendor-a36a82bc.js"
     ],
@@ -27,7 +27,7 @@
     "src": "index.html"
   },
   "src/components/SignIn/index.ts": {
-    "file": "assets/index-bd9931aa.js",
+    "file": "assets/index-69d635b9.js",
     "imports": [
       "_vendor-a36a82bc.js",
       "index.html"
@@ -44,7 +44,7 @@
     "src": "src/pages/404/NotFoundPage.tsx"
   },
   "src/pages/about/AboutPage.tsx": {
-    "file": "assets/AboutPage-8d4f32ab.js",
+    "file": "assets/AboutPage-6f4cbdbe.js",
     "imports": [
       "_vendor-a36a82bc.js",
       "index.html",
@@ -54,7 +54,7 @@
     "src": "src/pages/about/AboutPage.tsx"
   },
   "src/pages/addon/AddonPage.tsx": {
-    "file": "assets/AddonPage-16afac5e.js",
+    "file": "assets/AddonPage-5e6b822c.js",
     "imports": [
       "_vendor-a36a82bc.js",
       "index.html",
@@ -76,7 +76,7 @@
     "src": "src/pages/addon/firefox-browser-icon.svg"
   },
   "src/pages/contact/ContactPage.tsx": {
-    "file": "assets/ContactPage-44b2a7fa.js",
+    "file": "assets/ContactPage-64f8d8bb.js",
     "imports": [
       "_vendor-a36a82bc.js",
       "index.html",
@@ -94,7 +94,7 @@
     "src": "src/pages/team/TeamPage.tsx"
   },
   "src/pages/update/UpdatePage.tsx": {
-    "file": "assets/UpdatePage-df3ad1c5.js",
+    "file": "assets/UpdatePage-890e030b.js",
     "imports": [
       "_vendor-a36a82bc.js",
       "index.html"
