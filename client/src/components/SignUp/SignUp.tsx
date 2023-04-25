@@ -52,7 +52,7 @@ export default function SignUp() {
 
     const { error, status } = data
 
-    if (error && status !== 200) return
+    if (error || status !== 200) return
 
     enqueueSnackbar('Your user has been successfully created.', {
       variant: 'success'

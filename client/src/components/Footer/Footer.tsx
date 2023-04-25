@@ -1,11 +1,12 @@
 import { Box } from '@mui/material/'
 import Link from '@mui/material/Link'
 import Divider from '@mui/material/Divider'
-import { useNavigate } from 'react-router-dom'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
+import PolicyIcon from '@mui/icons-material/Policy'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import { footerItems } from '../Navigation/navItems'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 function Copyright() {
   return (
@@ -22,6 +23,8 @@ function Copyright() {
 
 export function Footer() {
   const navigate = useNavigate()
+  const { pathname } = useLocation()
+  const isAddonPath = pathname === '/addon'
 
   return (
     <Box
@@ -46,20 +49,35 @@ export function Footer() {
       >
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
           <Breadcrumbs aria-label="breadcrumb">
-            {footerItems.map(({ value, path, icon }) => (
-              <Link
-                key={value}
-                variant="body2"
-                color="inherit"
-                underline="hover"
-                component="button"
-                onClick={() => navigate(path)}
-                sx={{ display: 'flex', alignItems: 'center' }}
-              >
-                {icon}
-                {value}
-              </Link>
-            ))}
+            {footerItems.map(({ value, path, icon }) =>
+              isAddonPath && path === 'addon' ? (
+                <Link
+                  key="privacy"
+                  variant="body2"
+                  color="inherit"
+                  underline="hover"
+                  component="button"
+                  onClick={() => navigate('addon/privacy')}
+                  sx={{ display: 'flex', alignItems: 'center' }}
+                >
+                  <PolicyIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+                  Addon Privacy
+                </Link>
+              ) : (
+                <Link
+                  key={value}
+                  variant="body2"
+                  color="inherit"
+                  underline="hover"
+                  component="button"
+                  onClick={() => navigate(path)}
+                  sx={{ display: 'flex', alignItems: 'center' }}
+                >
+                  {icon}
+                  {value}
+                </Link>
+              )
+            )}
           </Breadcrumbs>
         </Box>
         <Divider sx={{ m: '16px' }} />

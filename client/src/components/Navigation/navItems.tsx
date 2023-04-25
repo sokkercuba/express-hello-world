@@ -5,6 +5,7 @@ import PeopleIcon from '@mui/icons-material/People'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
+import ExtensionIcon from '@mui/icons-material/Extension'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 import ContactMailIcon from '@mui/icons-material/ContactMail'
 import PersonSearchIcon from '@mui/icons-material/PersonSearch'
@@ -53,6 +54,11 @@ export const footerItems = [
     path: 'contact',
     value: 'Contact',
     icon: <ContactMailIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+  },
+  {
+    path: 'addon',
+    value: 'Addon',
+    icon: <ExtensionIcon sx={{ mr: 0.5 }} fontSize="inherit" />
   }
 ]
 

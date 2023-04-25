@@ -61,7 +61,7 @@ export default function SignIn() {
 
     const { user, error, status } = data
 
-    if (error && status !== 200) return
+    if (error || status !== 200) return
 
     setLogin(dispatch, true)
     setUsername(dispatch, user.login)

@@ -1,3 +1,4 @@
+import svgr from 'vite-plugin-svgr'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import viteCompression from 'vite-plugin-compression'
@@ -5,6 +6,7 @@ import { defineConfig, splitVendorChunkPlugin } from 'vite'
 
 export default defineConfig({
   plugins: [
+    svgr(),
     react({
       babel: {
         babelrc: true

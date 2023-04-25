@@ -1,12 +1,12 @@
 {
-  "_ScrollToTopOnMount-05c5fbd2.js": {
-    "file": "assets/ScrollToTopOnMount-05c5fbd2.js",
+  "_ScrollToTopOnMount-7248cb32.js": {
+    "file": "assets/ScrollToTopOnMount-7248cb32.js",
     "imports": [
-      "_vendor-d5f0a188.js"
+      "_vendor-a36a82bc.js"
     ]
   },
-  "_vendor-d5f0a188.js": {
-    "file": "assets/vendor-d5f0a188.js"
+  "_vendor-a36a82bc.js": {
+    "file": "assets/vendor-a36a82bc.js"
   },
   "index.html": {
     "dynamicImports": [
@@ -15,64 +15,89 @@
       "src/pages/about/AboutPage.tsx",
       "src/pages/update/UpdatePage.tsx",
       "src/pages/contact/ContactPage.tsx",
-      "src/pages/404/NotFoundPage.tsx"
+      "src/pages/404/NotFoundPage.tsx",
+      "src/pages/addon/AddonPage.tsx",
+      "src/pages/addon/AddonPrivacy.tsx"
     ],
-    "file": "assets/index-a94ad72b.js",
+    "file": "assets/index-e18e5992.js",
     "imports": [
-      "_vendor-d5f0a188.js"
+      "_vendor-a36a82bc.js"
     ],
     "isEntry": true,
     "src": "index.html"
   },
   "src/components/SignIn/index.ts": {
-    "file": "assets/index-b4818b55.js",
+    "file": "assets/index-bd9931aa.js",
     "imports": [
-      "_vendor-d5f0a188.js",
+      "_vendor-a36a82bc.js",
       "index.html"
     ],
     "isDynamicEntry": true,
     "src": "src/components/SignIn/index.ts"
   },
   "src/pages/404/NotFoundPage.tsx": {
-    "file": "assets/NotFoundPage-c1a14bac.js",
+    "file": "assets/NotFoundPage-32df506a.js",
     "imports": [
-      "_vendor-d5f0a188.js"
+      "_vendor-a36a82bc.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/404/NotFoundPage.tsx"
   },
   "src/pages/about/AboutPage.tsx": {
-    "file": "assets/AboutPage-6c718687.js",
+    "file": "assets/AboutPage-8d4f32ab.js",
     "imports": [
-      "_vendor-d5f0a188.js",
+      "_vendor-a36a82bc.js",
       "index.html",
-      "_ScrollToTopOnMount-05c5fbd2.js"
+      "_ScrollToTopOnMount-7248cb32.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/about/AboutPage.tsx"
   },
-  "src/pages/contact/ContactPage.tsx": {
-    "file": "assets/ContactPage-7f093d17.js",
+  "src/pages/addon/AddonPage.tsx": {
+    "file": "assets/AddonPage-16afac5e.js",
     "imports": [
-      "_vendor-d5f0a188.js",
+      "_vendor-a36a82bc.js",
       "index.html",
-      "_ScrollToTopOnMount-05c5fbd2.js"
+      "_ScrollToTopOnMount-7248cb32.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/addon/AddonPage.tsx"
+  },
+  "src/pages/addon/AddonPrivacy.tsx": {
+    "file": "assets/AddonPrivacy-d9b30d65.js",
+    "imports": [
+      "_vendor-a36a82bc.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/pages/addon/AddonPrivacy.tsx"
+  },
+  "src/pages/addon/firefox-browser-icon.svg": {
+    "file": "assets/firefox-browser-icon-0b827c10.svg",
+    "src": "src/pages/addon/firefox-browser-icon.svg"
+  },
+  "src/pages/contact/ContactPage.tsx": {
+    "file": "assets/ContactPage-44b2a7fa.js",
+    "imports": [
+      "_vendor-a36a82bc.js",
+      "index.html",
+      "_ScrollToTopOnMount-7248cb32.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/contact/ContactPage.tsx"
   },
   "src/pages/team/TeamPage.tsx": {
-    "file": "assets/TeamPage-b38c84cf.js",
+    "file": "assets/TeamPage-b796cd50.js",
     "imports": [
-      "_vendor-d5f0a188.js"
+      "_vendor-a36a82bc.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/team/TeamPage.tsx"
   },
   "src/pages/update/UpdatePage.tsx": {
-    "file": "assets/UpdatePage-4260eb11.js",
+    "file": "assets/UpdatePage-df3ad1c5.js",
     "imports": [
-      "_vendor-d5f0a188.js"
+      "_vendor-a36a82bc.js",
+      "index.html"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/update/UpdatePage.tsx"

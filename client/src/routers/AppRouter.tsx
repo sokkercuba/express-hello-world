@@ -5,6 +5,7 @@ import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom'
 import { HomePage } from '../pages'
 import { Footer } from '../components'
 import PrivateRoute from './PrivateRoute'
+import Toolbar from '@mui/material/Toolbar'
 import AppFallback from '../components/AppFallback'
 import { ResponsiveDrawer } from '../components/Navigation'
 
@@ -15,6 +16,8 @@ const AboutPage = lazy(() => import('../pages/about/AboutPage'))
 const UpdatePage = lazy(() => import('../pages/update/UpdatePage'))
 const ContactPage = lazy(() => import('../pages/contact/ContactPage'))
 const NotFoundPage = lazy(() => import('../pages/404/NotFoundPage'))
+const AddonPage = lazy(() => import('../pages/addon/AddonPage'))
+const AddonPrivacyPage = lazy(() => import('../pages/addon/AddonPrivacy'))
 
 interface SuspenseProps {
   children: ReactNode
@@ -26,11 +29,11 @@ const SuspenseWrapper = ({ children }: SuspenseProps) => (
 export const AppRouter = () => (
   <BrowserRouter>
     <ResponsiveDrawer>
+      <Toolbar />
       <Box
         sx={{
           p: 3,
           display: 'flex',
-          height: '100vh',
           flexDirection: 'column'
         }}
       >
@@ -58,6 +61,24 @@ export const AppRouter = () => (
             element={
               <SuspenseWrapper>
                 <NotFoundPage />
+              </SuspenseWrapper>
+            }
+          />
+
+          <Route
+            path="/addon"
+            element={
+              <SuspenseWrapper>
+                <AddonPage />
+              </SuspenseWrapper>
+            }
+          />
+
+          <Route
+            path="/addon/privacy"
+            element={
+              <SuspenseWrapper>
+                <AddonPrivacyPage />
               </SuspenseWrapper>
             }
           />

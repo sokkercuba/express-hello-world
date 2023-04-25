@@ -1,14 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios'
-import { Buffer } from 'buffer/'
 
 const TYPE = 'application/json'
 const CONTENT_TYPE = 'Content-Type'
-const API_USER = import.meta.env.API_USER
-const API_PASSW = import.meta.env.API_PASSW
-
-const authorization =
-  'Basic ' + Buffer.from(API_USER + ':' + API_PASSW).toString('base64')
+const API_KEY = import.meta.env.API_KEY
 
 const apiClient = (method: string, query: string, data?: any) =>
   axios({
@@ -18,7 +13,7 @@ const apiClient = (method: string, query: string, data?: any) =>
     headers: {
       Accept: TYPE,
       [CONTENT_TYPE]: TYPE,
-      Authorization: authorization
+      Authorization: API_KEY
     }
   })
 

@@ -174,11 +174,12 @@ export function ResponsiveDrawer(props: Props) {
       <Box
         component="main"
         sx={{
-          flexGrow: 1,
+          display: 'flex',
+          height: '100vh',
+          flexDirection: 'column',
           width: { sm: `calc(100% - ${drawerWidth}px)` }
         }}
       >
-        <Toolbar />
         {children}
       </Box>
     </Box>

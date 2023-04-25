@@ -15,7 +15,6 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import { AppContext } from '../../store/StoreProvider'
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload'
 import { handleApiRequest } from '../../services'
-import { cyan, blueGrey } from '@mui/material/colors'
 
 export default function AccountMenu() {
   const navigate = useNavigate()
@@ -40,7 +39,7 @@ export default function AccountMenu() {
 
     const { error, success, status } = data
 
-    if (error && !success && status !== 200) return
+    if ((error && !success) || status !== 200) return
 
     setLogin(dispatch, false)
   }

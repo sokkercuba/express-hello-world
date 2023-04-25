@@ -33,11 +33,11 @@ export const handleApiRequest = (
   query: string,
   method: string,
   dispatch: Dispatch<StoreAction>,
-  credentials?: SokkerCredentials
+  body?: SokkerCredentials | any,
 ) => {
   setLoading(dispatch, true)
 
-  const result = apiClient(method, query, credentials)
+  const result = apiClient(method, query, body)
     .then((response) => {
       const { status, data } = response || null
 

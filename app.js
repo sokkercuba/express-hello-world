@@ -40,9 +40,20 @@ const dynamoOpts = {
   ttl: oneDayMs
 }
 
-app.use(helmet())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'"]
+    }
+  })
+)
+app.use(express.json({ limit: '10mb', extended: true }))
+app.use(
+  express.urlencoded({ limit: '10mb', extended: true, parameterLimit: 50000 })
+)
 
 app.set('trust-proxy', 1)
 app.use(
