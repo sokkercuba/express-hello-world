@@ -1,13 +1,8 @@
-import { useNavigate } from 'react-router-dom'
-import Link from '@mui/material/Link'
-
 function AddonPrivacy() {
-  const navigate = useNavigate()
-
   return (
     <>
       <h1>Privacy Policy</h1>
-      <p>Last updated: April 24, 2023</p>
+      <p>Last updated: April 26, 2023</p>
       <p>
         This Privacy Policy describes Our policies and procedures on the
         collection, use and disclosure of Your information when You use the
@@ -40,18 +35,7 @@ function AddonPrivacy() {
         </li>
         <li>
           <p>
-            <strong>Service</strong> refers to the Addon, accessible from{' '}
-            <Link
-              key="https://www.sokkercuba.com/addon"
-              variant="body1"
-              color="inherit"
-              underline="hover"
-              component="button"
-              onClick={() => navigate('/addon')}
-              sx={{ display: 'flex', alignItems: 'center' }}
-            >
-              https://www.sokkercuba.com/addon
-            </Link>
+            <strong>Service</strong> refers to the extension
           </p>
         </li>
         <li>
@@ -74,61 +58,55 @@ function AddonPrivacy() {
         </li>
       </ul>
       <h1>Collecting and Using Your Personal Data</h1>
-      <h2>Types of Data Collected</h2>
-      <h3>Sokker Data</h3>
+      <h2>Types of Data Collected(per-extension)</h2>
+      <h3>Sokker JSON data exporter:</h3>
+      <h4>Sokker Data: user, squad, juniors, and training data.</h4>
       <p>
-        While using Our Service, We may ask You to grant Us with Your active
-        logged-in sokker.org tab's permissions from Your Device that can be used
-        to identify You and provide an easy way to extract Your Sokker Data,
-        exposing it by letting You to copy it to the clipboard. This means we
-        will use your sokker Cookies to made All requests to sokker.org API(none
-        external requests are made) Service Provider, so all request handling
-        security is made by them, ie: CORS.
+        This extension only access sokker data per user request, exposing it by
+        letting You to copy it to the clipboard. It uses sokker.org host
+        permissions to retrieve requested information so you need to be logged
+        in with your sokker account. There are no server-side activities. Such
+        information is not saved in any place or sent to any destination, it is
+        temporally cached and available to be copied to the clipboard by the
+        user.
       </p>
 
       <p>
         We do not collect any other information but the one specified as
         downloadable data on our Service.
       </p>
+      <p>Requests made:</p>
+      <ul>
+        <li>
+          <strong>user:</strong>{' '}
+          {'GET method => https://sokker.org/api/current'}
+        </li>
+        <li>
+          <strong>squad:</strong>
+          {
+            'GET method => https://sokker.org/api//player?filter[team]=${teamId}&filter[limit]=200&filter[offset]=0'
+          }
+        </li>
+        <li>
+          <strong>juniors:</strong>{' '}
+          {'GET method => https://sokker.org/api/junior'}
+        </li>
+        <li>
+          <strong>training/current-week:</strong>{' '}
+          {'GET method => https://sokker.org/api/training'}
+        </li>
+        <li>
+          <strong>training/summary:</strong>{' '}
+          {'GET method => https://sokker.org/api/training/summary'}
+        </li>
+        <li>
+          <strong>training/players history:</strong>{' '}
+          {'GET method => https://sokker.org/api//training/${playerId}/report'}
+        </li>
+      </ul>
       <p>
         By using the Service, You agree to the collection and use of information
         in accordance with this Privacy Policy.
-      </p>
-      <h3>Tracking Technologies and Cookies</h3>
-
-      <ul>
-        <li>
-          <p>
-            <strong>Necessary / Essential Cookies</strong>
-          </p>
-          <p>Type: Session Cookies</p>
-          <p>Administered by: Sokker.org</p>
-          <p>
-            Purpose: These Cookies are essential to provide the Service with
-            access to Your Sokker Data available through the sokker.org tab
-            opened in your device and to enable You to use some of its features.
-            They help to authenticate You while requesting data to Sokker API.
-            Without these Cookies, the services that You have asked for cannot
-            be provided, and We only use these Cookies to provide You with those
-            services.
-          </p>
-        </li>
-      </ul>
-
-      <p>
-        The Service will take all steps reasonably necessary to ensure that Your
-        data is treated securely and in accordance with this Privacy Policy and
-        no transfer of Your Personal Data will take place including the security
-        of Your data and other personal information.
-      </p>
-
-      <h2>Security of Your Personal Data</h2>
-      <p>
-        The security of Your Personal Data is important to Us, but remember that
-        no method of transmission over the Internet, or method of electronic
-        storage is 100% secure. While We strive to use commercially acceptable
-        means to protect Your Personal Data, We cannot guarantee its absolute
-        security.
       </p>
 
       <h1>Changes to this Privacy Policy</h1>
