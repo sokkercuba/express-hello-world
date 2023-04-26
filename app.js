@@ -44,9 +44,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'"]
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"]
     }
   })
 )
@@ -71,21 +69,17 @@ app.use(
 
 app.use('/', router)
 
-app.use(express.static('public', options))
+if (process.env.NODE_ENV === 'production') {
+  // Express  will serve up production assets
+  // like our main.js file, or main.css file!
+  app.use(express.static('public', options))
+  // Express will serve up the index.html file
+  // if it doesn't recognize the route
+  const path = require('path')
 
-app.use('*', (req, res) => {
-  res
-    .json({
-      at: new Date().toISOString(),
-      method: req.method,
-      hostname: req.hostname,
-      ip: req.ip,
-      query: req.query,
-      headers: req.headers,
-      cookies: req.cookies,
-      params: req.params
-    })
-    .end()
-})
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+  })
+}
 
 module.exports = app
