@@ -12,6 +12,7 @@ import { AppContext } from '../../store/StoreProvider'
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { parseName, parsePositions } from '../../utils/parsePlayerData'
+import { getImgUrl } from '../../utils/getImgUrl'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -90,7 +91,9 @@ function LeaderBoard() {
               >
                 <Avatar
                   alt={`${podium[1].name}`}
-                  src={`https://api.multiavatar.com/${podium[1].id}.png`}
+                  src={getImgUrl(
+                    `https://api.multiavatar.com/${podium[1].id}.png`
+                  )}
                   sx={{
                     position: 'absolute',
                     top: '2px',
@@ -130,7 +133,9 @@ function LeaderBoard() {
               >
                 <Avatar
                   alt={`${podium[0].name}`}
-                  src={`https://api.multiavatar.com/${podium[0].id}.png`}
+                  src={getImgUrl(
+                    `https://api.multiavatar.com/${podium[0].id}.png`
+                  )}
                   sx={{
                     width: 64,
                     height: 64,
@@ -175,7 +180,9 @@ function LeaderBoard() {
               >
                 <Avatar
                   alt={`${podium[2].name}`}
-                  src={`https://api.multiavatar.com/${podium[2].id}.png`}
+                  src={getImgUrl(
+                    `https://api.multiavatar.com/${podium[2].id}.png`
+                  )}
                   sx={{
                     position: 'absolute',
                     top: '26px',
@@ -215,7 +222,7 @@ function LeaderBoard() {
                 >
                   <Avatar
                     alt={`${name}`}
-                    src={`https://api.multiavatar.com/${id}.png`}
+                    src={getImgUrl(`https://api.multiavatar.com/${id}.png`)}
                   />
 
                   <Stack width="100%">
