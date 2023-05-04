@@ -43,8 +43,8 @@ const dynamoOpts = {
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"]
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+      'img-src': ["'self'", 'https: data:']
     }
   })
 )

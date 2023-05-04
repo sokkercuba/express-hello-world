@@ -21,7 +21,7 @@
       "src/pages/addon/AddonPrivacy.tsx",
       "src/pages/xtreme/XtremePage.tsx"
     ],
-    "file": "assets/index-db1993e0.js",
+    "file": "assets/index-6cf6b5d8.js",
     "imports": [
       "_vendor-88ac2967.js"
     ],
@@ -29,7 +29,7 @@
     "src": "index.html"
   },
   "src/components/SignIn/index.ts": {
-    "file": "assets/index-7cfb0c6e.js",
+    "file": "assets/index-abf343b9.js",
     "imports": [
       "_vendor-88ac2967.js",
       "index.html"
@@ -38,7 +38,7 @@
     "src": "src/components/SignIn/index.ts"
   },
   "src/components/SignUp/index.ts": {
-    "file": "assets/index-b301d0a9.js",
+    "file": "assets/index-2e0e6f63.js",
     "imports": [
       "_vendor-88ac2967.js",
       "index.html"
@@ -55,7 +55,7 @@
     "src": "src/pages/404/NotFoundPage.tsx"
   },
   "src/pages/about/AboutPage.tsx": {
-    "file": "assets/AboutPage-a779334d.js",
+    "file": "assets/AboutPage-8ef07d4c.js",
     "imports": [
       "_vendor-88ac2967.js",
       "index.html",
@@ -65,7 +65,7 @@
     "src": "src/pages/about/AboutPage.tsx"
   },
   "src/pages/addon/AddonPage.tsx": {
-    "file": "assets/AddonPage-424dc36c.js",
+    "file": "assets/AddonPage-9359f95e.js",
     "imports": [
       "_vendor-88ac2967.js",
       "index.html",
@@ -87,7 +87,7 @@
     "src": "src/pages/addon/firefox-browser-icon.svg"
   },
   "src/pages/contact/ContactPage.tsx": {
-    "file": "assets/ContactPage-2c607ab9.js",
+    "file": "assets/ContactPage-8b8cbd35.js",
     "imports": [
       "_vendor-88ac2967.js",
       "index.html",
@@ -105,7 +105,7 @@
     "src": "src/pages/team/TeamPage.tsx"
   },
   "src/pages/update/UpdatePage.tsx": {
-    "file": "assets/UpdatePage-405c1bb0.js",
+    "file": "assets/UpdatePage-139e3b3f.js",
     "imports": [
       "_vendor-88ac2967.js",
       "index.html"
@@ -114,7 +114,7 @@
     "src": "src/pages/update/UpdatePage.tsx"
   },
   "src/pages/xtreme/XtremePage.tsx": {
-    "file": "assets/XtremePage-097524b3.js",
+    "file": "assets/XtremePage-4ff5b0d4.js",
     "imports": [
       "_vendor-88ac2967.js",
       "index.html"
