@@ -1,4 +1,4 @@
-import { Box } from '@mui/material/'
+import { Box, PaletteMode } from '@mui/material/'
 import { lazy, ReactNode, Suspense } from 'react'
 import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom'
 
@@ -10,7 +10,7 @@ import AppFallback from '../components/AppFallback'
 import { ResponsiveDrawer } from '../components/Navigation'
 
 const SignIn = lazy(() => import('../components/SignIn'))
-// const SignUp = lazy(() => import('../components/SignUp'))
+const SignUp = lazy(() => import('../components/SignUp'))
 const TeamPage = lazy(() => import('../pages/team/TeamPage'))
 const AboutPage = lazy(() => import('../pages/about/AboutPage'))
 const UpdatePage = lazy(() => import('../pages/update/UpdatePage'))
@@ -18,6 +18,7 @@ const ContactPage = lazy(() => import('../pages/contact/ContactPage'))
 const NotFoundPage = lazy(() => import('../pages/404/NotFoundPage'))
 const AddonPage = lazy(() => import('../pages/addon/AddonPage'))
 const AddonPrivacyPage = lazy(() => import('../pages/addon/AddonPrivacy'))
+const XtremePage = lazy(() => import('../pages/xtreme/XtremePage'))
 
 interface SuspenseProps {
   children: ReactNode
@@ -26,9 +27,13 @@ const SuspenseWrapper = ({ children }: SuspenseProps) => (
   <Suspense fallback={<AppFallback />}>{children}</Suspense>
 )
 
-export const AppRouter = () => (
+export const AppRouter = ({
+  setSelectedTheme
+}: {
+  setSelectedTheme: (theme: PaletteMode) => void
+}) => (
   <BrowserRouter>
-    <ResponsiveDrawer>
+    <ResponsiveDrawer setSelectedTheme={setSelectedTheme}>
       <Toolbar />
       <Box
         sx={{
@@ -92,14 +97,23 @@ export const AppRouter = () => (
             }
           />
 
-          {/* <Route
+          <Route
             path="/signup"
             element={
               <SuspenseWrapper>
                 <SignUp />
               </SuspenseWrapper>
             }
-          /> */}
+          />
+
+          <Route
+            path="/xtreme"
+            element={
+              <SuspenseWrapper>
+                <XtremePage />
+              </SuspenseWrapper>
+            }
+          />
 
           <Route path="/squad" element={<PrivateRoute />}>
             <Route

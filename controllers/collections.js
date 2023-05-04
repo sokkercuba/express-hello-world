@@ -3,7 +3,6 @@ const db = CyclicDb('fantastic-shirt-mothCyclicDB')
 
 const setCollection = async (req, res) => {
   const { params, body } = req
-  console.log('🚀 ~ body:', body)
   const { col, key } = params
 
   if (!col || !key) {
@@ -39,7 +38,6 @@ const getCollection = async (req, res) => {
   }
 
   const item = await db.collection(col).get(key)
-  console.log('🚀 ~ item:', item)
   res.json(item).end()
 }
 
@@ -52,7 +50,13 @@ const getCollections = async (req, res) => {
     })
   }
 
-  const items = await db.collection(col).list()
+  const { results: itemsMetadata } = await db.collection(col).list()
+  const items = await Promise.all(
+    itemsMetadata.map(
+      async ({ key }) => (await db.collection(col).get(key)).props
+    )
+  )
+
   res.json(items).end()
 }
 

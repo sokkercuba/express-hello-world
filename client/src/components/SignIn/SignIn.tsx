@@ -7,7 +7,7 @@ import Avatar from '@mui/material/Avatar'
 import { Navigate } from 'react-router-dom'
 import Checkbox from '@mui/material/Checkbox'
 import TextField from '@mui/material/TextField'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Container from '@mui/material/Container'
 import { handleApiRequest } from '../../services'
 import Typography from '@mui/material/Typography'
@@ -24,13 +24,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 export default function SignIn() {
   const { state, dispatch } = useContext(AppContext)
   const { loggedIn } = state
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   const [checked, setChecked] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
-
-  // useEffect(() => {
-  //   console.log("🚀 ~ state:", state);
-  // }, [state]);
 
   if (loggedIn) return <Navigate to="/" />
 
@@ -152,7 +148,7 @@ export default function SignIn() {
             <Link
               variant="body1"
               component="button"
-              // onClick={() => navigate('/signup')}
+              onClick={() => navigate('/signup')}
             >
               Sign Up
             </Link>

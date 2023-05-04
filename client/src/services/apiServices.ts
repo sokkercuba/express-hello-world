@@ -33,7 +33,7 @@ export const handleApiRequest = (
   query: string,
   method: string,
   dispatch: Dispatch<StoreAction>,
-  body?: SokkerCredentials | any,
+  body?: SokkerCredentials | any
 ) => {
   setLoading(dispatch, true)
 
@@ -42,7 +42,6 @@ export const handleApiRequest = (
       const { status, data } = response || null
 
       if (status === 200 && !data?.error) {
-        console.log('🚀 ~ handleApiRequest success:', response)
         setError(dispatch, false)
         setErrorMsg(dispatch, '')
         return { ...data, status }

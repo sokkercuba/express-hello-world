@@ -35,7 +35,7 @@ export default function UpdatePage() {
 
     const isAll = updateType === 'all'
     const data = validateUpdateData(value, updateType)
-    const type = isAll ? 'sokker' : updateType
+    const type = isAll ? username : updateType
 
     if (data) {
       const body = isAll ? data : { [updateType]: data }
@@ -51,6 +51,7 @@ export default function UpdatePage() {
       if (error || status !== 200) return
 
       setValue('')
+      //TODO make a full state update request here: ...
       enqueueSnackbar(
         `You have successfully updated your ${type} data into our database`,
         { variant: 'success' }
@@ -61,9 +62,6 @@ export default function UpdatePage() {
         { variant: 'error' }
       )
     }
-
-    // setLogin(dispatch, true)
-    // setUsername(dispatch, user.login)
   }
 
   return (
