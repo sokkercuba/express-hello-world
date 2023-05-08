@@ -10,7 +10,7 @@ import AppFallback from '../components/AppFallback'
 import { ResponsiveDrawer } from '../components/Navigation'
 
 const SignIn = lazy(() => import('../components/SignIn'))
-const SignUp = lazy(() => import('../components/SignUp'))
+// const SignUp = lazy(() => import('../components/SignUp'))
 const TeamPage = lazy(() => import('../pages/team/TeamPage'))
 const AboutPage = lazy(() => import('../pages/about/AboutPage'))
 const UpdatePage = lazy(() => import('../pages/update/UpdatePage'))
@@ -97,14 +97,14 @@ export const AppRouter = ({
             }
           />
 
-          <Route
+          {/* <Route
             path="/signup"
             element={
               <SuspenseWrapper>
                 <SignUp />
               </SuspenseWrapper>
             }
-          />
+          /> */}
 
           <Route
             path="/xtreme"

@@ -132,7 +132,7 @@ export function ResponsiveDrawer(props: Props) {
   )
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box>
       <AppBar
         position="fixed"
         sx={{
@@ -235,6 +235,7 @@ export function ResponsiveDrawer(props: Props) {
           display: 'flex',
           height: '100vh',
           flexDirection: 'column',
+          ml: { sm: `${drawerWidth}px` },
           width: { sm: `calc(100% - ${drawerWidth}px)` }
         }}
       >

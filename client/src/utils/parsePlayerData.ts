@@ -3,6 +3,7 @@ export interface Position {
   name: string
   team: string
   score: number
+  position: number
   iconData?: {
     down: boolean
     color: string
@@ -19,7 +20,7 @@ const getStatusIconData = (prevPos: Position[], currentPos: Position[]) => {
       color: idx > prevIdx ? 'error' : isEqualScore
     }
 
-    return { ...item, iconData }
+    return { ...item, iconData, position: idx + 1 }
   })
 
   return data
@@ -34,11 +35,12 @@ export const parsePositions = (data: any[]) => {
     const team = player[1][0].team
     const currentValue = Number(player[1][player[1].length - 1]?.score || 0)
     const prevValue = Number(player[1][player[1].length - 2]?.score || 0)
-    const prev = { id: player[0], name, team, score: prevValue }
+    const prev = { id: player[0], name, team, score: prevValue, position: 0 }
     const current = {
       id: player[0],
       name,
       team,
+      position: 0,
       score: currentValue
     }
     prevPositions.push(prev)
@@ -62,5 +64,6 @@ export const parseName = (str: string) => {
     }
   })
 
-  return name + ' ' + rest.join('')
+  const result = name + ' ' + rest.join('')
+  return result.substring(0, 17)
 }

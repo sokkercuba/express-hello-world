@@ -1,11 +1,7 @@
 import LeaderBoard from '../../components/LeaderBoard/LeaderBoard'
 
 function XtremePage() {
-  return (
-    <div>
-      <LeaderBoard />
-    </div>
-  )
+  return <LeaderBoard />
 }
 
 export default XtremePage

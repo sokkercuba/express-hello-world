@@ -1,17 +1,16 @@
 {
-  "_ScrollToTopOnMount-a96e6672.js": {
-    "file": "assets/ScrollToTopOnMount-a96e6672.js",
+  "_ScrollToTopOnMount-2bc95e55.js": {
+    "file": "assets/ScrollToTopOnMount-2bc95e55.js",
     "imports": [
-      "_vendor-88ac2967.js"
+      "_vendor-7e5c234d.js"
     ]
   },
-  "_vendor-88ac2967.js": {
-    "file": "assets/vendor-88ac2967.js"
+  "_vendor-7e5c234d.js": {
+    "file": "assets/vendor-7e5c234d.js"
   },
   "index.html": {
     "dynamicImports": [
       "src/components/SignIn/index.ts",
-      "src/components/SignUp/index.ts",
       "src/pages/team/TeamPage.tsx",
       "src/pages/about/AboutPage.tsx",
       "src/pages/update/UpdatePage.tsx",
@@ -21,63 +20,54 @@
       "src/pages/addon/AddonPrivacy.tsx",
       "src/pages/xtreme/XtremePage.tsx"
     ],
-    "file": "assets/index-6cf6b5d8.js",
+    "file": "assets/index-26b22274.js",
     "imports": [
-      "_vendor-88ac2967.js"
+      "_vendor-7e5c234d.js"
     ],
     "isEntry": true,
     "src": "index.html"
   },
   "src/components/SignIn/index.ts": {
-    "file": "assets/index-abf343b9.js",
+    "file": "assets/index-30ba5590.js",
     "imports": [
-      "_vendor-88ac2967.js",
+      "_vendor-7e5c234d.js",
       "index.html"
     ],
     "isDynamicEntry": true,
     "src": "src/components/SignIn/index.ts"
   },
-  "src/components/SignUp/index.ts": {
-    "file": "assets/index-2e0e6f63.js",
-    "imports": [
-      "_vendor-88ac2967.js",
-      "index.html"
-    ],
-    "isDynamicEntry": true,
-    "src": "src/components/SignUp/index.ts"
-  },
   "src/pages/404/NotFoundPage.tsx": {
-    "file": "assets/NotFoundPage-bf323c0f.js",
+    "file": "assets/NotFoundPage-b3db62de.js",
     "imports": [
-      "_vendor-88ac2967.js"
+      "_vendor-7e5c234d.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/404/NotFoundPage.tsx"
   },
   "src/pages/about/AboutPage.tsx": {
-    "file": "assets/AboutPage-8ef07d4c.js",
+    "file": "assets/AboutPage-2168b173.js",
     "imports": [
-      "_vendor-88ac2967.js",
+      "_vendor-7e5c234d.js",
       "index.html",
-      "_ScrollToTopOnMount-a96e6672.js"
+      "_ScrollToTopOnMount-2bc95e55.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/about/AboutPage.tsx"
   },
   "src/pages/addon/AddonPage.tsx": {
-    "file": "assets/AddonPage-9359f95e.js",
+    "file": "assets/AddonPage-19e61f2f.js",
     "imports": [
-      "_vendor-88ac2967.js",
+      "_vendor-7e5c234d.js",
       "index.html",
-      "_ScrollToTopOnMount-a96e6672.js"
+      "_ScrollToTopOnMount-2bc95e55.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/addon/AddonPage.tsx"
   },
   "src/pages/addon/AddonPrivacy.tsx": {
-    "file": "assets/AddonPrivacy-b745ab57.js",
+    "file": "assets/AddonPrivacy-4063c510.js",
     "imports": [
-      "_vendor-88ac2967.js"
+      "_vendor-7e5c234d.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/addon/AddonPrivacy.tsx"
@@ -87,36 +77,36 @@
     "src": "src/pages/addon/firefox-browser-icon.svg"
   },
   "src/pages/contact/ContactPage.tsx": {
-    "file": "assets/ContactPage-8b8cbd35.js",
+    "file": "assets/ContactPage-4eb5978a.js",
     "imports": [
-      "_vendor-88ac2967.js",
+      "_vendor-7e5c234d.js",
       "index.html",
-      "_ScrollToTopOnMount-a96e6672.js"
+      "_ScrollToTopOnMount-2bc95e55.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/contact/ContactPage.tsx"
   },
   "src/pages/team/TeamPage.tsx": {
-    "file": "assets/TeamPage-50994eb1.js",
+    "file": "assets/TeamPage-eddf793c.js",
     "imports": [
-      "_vendor-88ac2967.js"
+      "_vendor-7e5c234d.js"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/team/TeamPage.tsx"
   },
   "src/pages/update/UpdatePage.tsx": {
-    "file": "assets/UpdatePage-139e3b3f.js",
+    "file": "assets/UpdatePage-6a6c92ec.js",
     "imports": [
-      "_vendor-88ac2967.js",
+      "_vendor-7e5c234d.js",
       "index.html"
     ],
     "isDynamicEntry": true,
     "src": "src/pages/update/UpdatePage.tsx"
   },
   "src/pages/xtreme/XtremePage.tsx": {
-    "file": "assets/XtremePage-4ff5b0d4.js",
+    "file": "assets/XtremePage-6c6f461d.js",
     "imports": [
-      "_vendor-88ac2967.js",
+      "_vendor-7e5c234d.js",
       "index.html"
     ],
     "isDynamicEntry": true,
