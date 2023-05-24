@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import Box from '@mui/material/Box'
+import { Box } from '@mui/material'
 import Menu from '@mui/material/Menu'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'

@@ -1,12 +1,10 @@
-import type { PlayerFormationName } from "../../types/PlayerData";
-
 export interface SkillData {
-  date: number;
-  value: number;
-  formation: PlayerFormationName;
+  date: number
+  value: number
+  formation: any
 }
 export interface ChartProps {
-  skillName: string;
-  data: SkillData[];
-  onDataChange: (page: number) => void;
+  skillName: string
+  data: SkillData[]
+  onDataChange: (page: number) => void
 }

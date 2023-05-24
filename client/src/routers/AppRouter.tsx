@@ -10,7 +10,7 @@ import AppFallback from '../components/AppFallback'
 import { ResponsiveDrawer } from '../components/Navigation'
 
 const SignIn = lazy(() => import('../components/SignIn'))
-// const SignUp = lazy(() => import('../components/SignUp'))
+// const SignUp = lazy(() => import('../components/SignUp'))TrainingPage
 const TeamPage = lazy(() => import('../pages/team/TeamPage'))
 const AboutPage = lazy(() => import('../pages/about/AboutPage'))
 const UpdatePage = lazy(() => import('../pages/update/UpdatePage'))
@@ -19,6 +19,7 @@ const NotFoundPage = lazy(() => import('../pages/404/NotFoundPage'))
 const AddonPage = lazy(() => import('../pages/addon/AddonPage'))
 const AddonPrivacyPage = lazy(() => import('../pages/addon/AddonPrivacy'))
 const XtremePage = lazy(() => import('../pages/xtreme/XtremePage'))
+const TrainingPage = lazy(() => import('../pages/training/TrainingPage'))
 
 interface SuspenseProps {
   children: ReactNode
@@ -121,6 +122,17 @@ export const AppRouter = ({
               element={
                 <SuspenseWrapper>
                   <TeamPage />
+                </SuspenseWrapper>
+              }
+            />
+          </Route>
+
+          <Route path="/training" element={<PrivateRoute />}>
+            <Route
+              path="/training"
+              element={
+                <SuspenseWrapper>
+                  <TrainingPage />
                 </SuspenseWrapper>
               }
             />

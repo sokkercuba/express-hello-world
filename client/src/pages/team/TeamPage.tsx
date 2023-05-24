@@ -1,13 +1,10 @@
-import { useEffect } from "react";
-import SquadPageTabs from "./PageTabs";
+import PageTabs from '../../components/PageTabs'
+
+const Tabs = [
+  { label: 'MAIN', children: 'MAIN DATA' },
+  { label: 'JUNIORS', children: 'JUNIORS DATA' }
+]
 
 export default function PlayersPage() {
-  //const players = usePlayersSearch();
-  //console.log('players: ', players);
-
-  useEffect(() => {
-    //dispatch({ type: types.setPlayers, payload: players });
-  }, []);
-
-  return <SquadPageTabs />;
+  return <PageTabs tabs={Tabs} />
 }

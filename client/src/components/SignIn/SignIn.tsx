@@ -16,7 +16,7 @@ import FormControl from '@mui/material/FormControl'
 import { AppContext } from '../../store/StoreProvider'
 import Visibility from '@mui/icons-material/Visibility'
 import InputAdornment from '@mui/material/InputAdornment'
-import { setLogin, setUsername } from '../../store/actions'
+import { setAll, setLogin, setUsername } from '../../store/actions'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
@@ -55,12 +55,32 @@ export default function SignIn() {
       }
     )
 
-    const { user, error, status } = data
+    const {
+      error,
+      status,
+      user: { login }
+    } = data
 
     if (error || status !== 200) return
 
     setLogin(dispatch, true)
-    setUsername(dispatch, user.login)
+    setUsername(dispatch, login)
+
+    const allData = await handleApiRequest(
+      `/api/v1/users/${login}`,
+      'GET',
+      dispatch
+    )
+
+    const {
+      error: error2,
+      status: status2,
+      props: { user, juniors, cweek, tsummary, players, training }
+    } = allData
+
+    if (error2 || status2 !== 200) return
+
+    setAll(dispatch, { user, juniors, cweek, tsummary, players, training })
   }
 
   return (

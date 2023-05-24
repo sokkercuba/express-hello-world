@@ -2,19 +2,20 @@ import { ChangeEvent, MouseEventHandler, useContext, useState } from 'react'
 import { Box } from '@mui/material/'
 import Button from '@mui/material/Button'
 import Avatar from '@mui/material/Avatar'
+import { enqueueSnackbar } from 'notistack'
+import { setAll } from '../../store/actions'
 import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
 import SaveIcon from '@mui/icons-material/Save'
 import Container from '@mui/material/Container'
 import InputLabel from '@mui/material/InputLabel'
+import { handleApiRequest } from '../../services'
 import Typography from '@mui/material/Typography'
 import FormControl from '@mui/material/FormControl'
 import { AppContext } from '../../store/StoreProvider'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { updateTypes } from '../../constants/updateTypes'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { validateUpdateData } from '../../utils/validateUpdateData'
-import { handleApiRequest } from '../../services'
-import { enqueueSnackbar } from 'notistack'
 
 export default function UpdatePage() {
   const { state, dispatch } = useContext(AppContext)
@@ -46,12 +47,13 @@ export default function UpdatePage() {
         body
       )
 
-      const { error, status } = result
+      const { error, status, props } = result
 
       if (error || status !== 200) return
 
       setValue('')
-      //TODO make a full state update request here: ...
+      setAll(dispatch, { ...props })
+
       enqueueSnackbar(
         `You have successfully updated your ${type} data into our database`,
         { variant: 'success' }

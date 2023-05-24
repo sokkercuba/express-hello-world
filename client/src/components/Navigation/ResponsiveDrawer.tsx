@@ -1,5 +1,5 @@
-import { ReactNode, useContext, useState } from 'react'
-import Box from '@mui/material/Box'
+import { ReactNode, useContext, useEffect, useState } from 'react'
+import { Box } from '@mui/material'
 import List from '@mui/material/List'
 import AccountMenu from './AccountMenu'
 import AppBar from '@mui/material/AppBar'
@@ -11,8 +11,10 @@ import Toolbar from '@mui/material/Toolbar'
 import { PaletteMode } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useNavigate } from 'react-router-dom'
+import { setLogin } from '../../store/actions'
 import MenuIcon from '@mui/icons-material/Menu'
 import IconButton from '@mui/material/IconButton'
+import { handleApiRequest } from '../../services'
 import { AppContext } from '../../store/StoreProvider'
 import {
   NavBarItem,
@@ -78,9 +80,25 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 export function ResponsiveDrawer(props: Props) {
   const { children, setSelectedTheme } = props
   const navigate = useNavigate()
-  const { state } = useContext(AppContext)
+  const { state, dispatch } = useContext(AppContext)
   const { loggedIn } = state
   const [mobileOpen, setMobileOpen] = useState(false)
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const { success } = await handleApiRequest(
+        '/api/auth/v1/check-session',
+        'GET',
+        dispatch,
+        {},
+        true
+      )
+
+      if (!success) setLogin(dispatch, false)
+    }
+
+    checkSession()
+  }, [])
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)

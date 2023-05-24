@@ -13,7 +13,7 @@ const checkLogin = async (req, res) => {
     req.session.views = req.session.views + 1 || 1
     return sendResponse(res, 200, { success: true })
   } else {
-    return sendResponse(res, 401, { success: false })
+    return sendResponse(res, 200, { success: false })
   }
 }
 

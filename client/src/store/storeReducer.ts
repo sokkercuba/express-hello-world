@@ -1,35 +1,32 @@
-import type { UserData } from "../types/UserData";
-import type { JuniorData } from "../types/JuniorData";
-import type { PlayerData } from "../types/PlayerData";
-import { getStoredState } from "./localStorage";
+import { getStoredState } from './localStorage'
+import type { AllData } from '../types/AllData'
 
-export interface StoreState {
-  error?: boolean;
-  errorMsg?: string;
-  username: string;
-  loading: boolean;
-  loggedIn: boolean;
-  currentWeek: number;
-  user?: UserData | null;
-  playersData?: PlayerData[];
-  juniorsData?: JuniorData[];
+export interface StoreState extends AllData {
+  error?: boolean
+  errorMsg?: string
+  username: string
+  loading: boolean
+  loggedIn: boolean
 }
 
 enum StoreActionTypes {
-  SET_WEEK = "set-week",
-  SET_ERROR = "set-error",
-  SET_ERROR_MSG = "set-error-msg",
-  SET_LOGIN = "set-login",
-  SET_USER = "set-user",
-  SET_USERNAME = "set-username",
-  SET_LOADING = "set-loading",
-  SET_PLAYERS = "set-players",
-  SET_JUNIORS = "set-juniors",
+  SET_ERROR = 'set-error',
+  SET_ERROR_MSG = 'set-error-msg',
+  SET_USERNAME = 'set-username',
+  SET_LOADING = 'set-loading',
+  SET_LOGIN = 'set-login',
+  SET_USER = 'set-user',
+  SET_JUNIORS = 'set-juniors',
+  SET_WEEK = 'set-week',
+  SET_TEAM = 'set-team',
+  SET_SUMMARY = 'set-summary',
+  SET_TRAINING = 'set-training',
+  SET_ALL = 'set-all'
 }
 
 export interface StoreAction {
-  type: StoreActionTypes;
-  payload: any;
+  type: StoreActionTypes
+  payload: any
 }
 
 export default function storeReducer(
@@ -37,27 +34,33 @@ export default function storeReducer(
   action: StoreAction
 ): StoreState {
   switch (action.type) {
-    case StoreActionTypes.SET_WEEK:
-      return { ...state, currentWeek: action.payload };
     case StoreActionTypes.SET_ERROR:
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload }
     case StoreActionTypes.SET_ERROR_MSG:
-      return { ...state, errorMsg: action.payload };
+      return { ...state, errorMsg: action.payload }
     case StoreActionTypes.SET_USERNAME:
-      return { ...state, username: action.payload };
-    case StoreActionTypes.SET_LOGIN:
-      return { ...state, loggedIn: action.payload };
-    case StoreActionTypes.SET_USER:
-      return { ...state, user: action.payload };
+      return { ...state, username: action.payload }
     case StoreActionTypes.SET_LOADING:
-      return { ...state, loading: action.payload };
-    case StoreActionTypes.SET_PLAYERS:
-      return { ...state, playersData: action.payload };
+      return { ...state, loading: action.payload }
+    case StoreActionTypes.SET_LOGIN:
+      return { ...state, loggedIn: action.payload }
+    case StoreActionTypes.SET_USER:
+      return { ...state, user: action.payload }
     case StoreActionTypes.SET_JUNIORS:
-      return { ...state, juniorsData: action.payload };
+      return { ...state, juniors: action.payload }
+    case StoreActionTypes.SET_WEEK:
+      return { ...state, cweek: action.payload }
+    case StoreActionTypes.SET_SUMMARY:
+      return { ...state, tsummary: action.payload }
+    case StoreActionTypes.SET_TEAM:
+      return { ...state, players: action.payload }
+    case StoreActionTypes.SET_TRAINING:
+      return { ...state, training: action.payload }
+    case StoreActionTypes.SET_ALL:
+      return { ...state, ...action.payload }
     default:
-      return state;
+      return state
   }
 }
 
-export { StoreActionTypes };
+export { StoreActionTypes }

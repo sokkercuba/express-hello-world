@@ -9,6 +9,7 @@ import ExtensionIcon from '@mui/icons-material/Extension'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 import ContactMailIcon from '@mui/icons-material/ContactMail'
 import PersonSearchIcon from '@mui/icons-material/PersonSearch'
+import SelfImprovementIcon from '@mui/icons-material/SelfImprovement'
 
 interface NavBarItemProps {
   path: string
@@ -41,6 +42,11 @@ export const drawerPrivateItems = [
     path: 'squad',
     value: 'Team',
     icon: <PeopleIcon />
+  },
+  {
+    path: 'training',
+    value: 'Training',
+    icon: <SelfImprovementIcon />
   }
 ]
 
