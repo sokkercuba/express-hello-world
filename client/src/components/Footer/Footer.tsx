@@ -42,9 +42,7 @@ export function Footer() {
           px: 2,
           mt: 'auto',
           backgroundColor: (theme) =>
-            theme.palette.mode === 'light'
-              ? theme.palette.grey[200]
-              : theme.palette.grey[800]
+            theme.palette.mode === 'light' ? theme.palette.grey[200] : '#1a1a38'
         }}
       >
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>

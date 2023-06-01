@@ -1,0 +1,1 @@
+import{a}from"./vendor-15700094.js";import{P as r}from"./PageTabs-5637dc77.js";const e=[{label:"MAIN",children:"MAIN DATA"},{label:"JUNIORS",children:"JUNIORS DATA"}];function o(){return a(r,{tabs:e})}export{o as default};

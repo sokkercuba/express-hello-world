@@ -2,8 +2,11 @@ const router = require('express').Router()
 const dbController = require('../controllers/collections')
 
 /* ### Cyclic CRUD ### */
-// Create or Update a collection
+// Create or Update a whole collection
 router.route('/:col/:key').post(dbController.setCollection)
+
+// Patch a collection
+router.route('/:col/:key').patch(dbController.updateCollection)
 
 // Delete a collection
 router.route('/:col/:key').delete(dbController.deleteCollection)

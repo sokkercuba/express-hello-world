@@ -42,7 +42,7 @@ export default function UpdatePage() {
       const body = isAll ? data : { [updateType]: data }
       const result = await handleApiRequest(
         `/api/v1/users/${username}`,
-        'POST',
+        'PATCH',
         dispatch,
         body
       )

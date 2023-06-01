@@ -5,10 +5,29 @@ import { SnackbarProvider } from 'notistack'
 import CssBaseline from '@mui/material/CssBaseline'
 import { StoreProvider } from './store/StoreProvider'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { indigo } from '@mui/material/colors'
+
+const getDesignTokens = (mode: PaletteMode) => ({
+  palette: {
+    mode,
+    primary: {
+      ...indigo,
+      ...(mode === 'dark' && {
+        main: indigo[500]
+      })
+    },
+    ...(mode === 'dark' && {
+      background: {
+        default: indigo[900],
+        paper: indigo[900]
+      }
+    })
+  }
+})
 
 const App = () => {
   const [selectedTheme, setSelectedTheme] = useState<PaletteMode>('light')
-  const theme = createTheme({ palette: { mode: selectedTheme } })
+  const theme = createTheme(getDesignTokens(selectedTheme))
 
   return (
     <ThemeProvider theme={theme}>
@@ -23,3 +42,5 @@ const App = () => {
 }
 
 export default App
+
+// background-color: #1A1A37;
