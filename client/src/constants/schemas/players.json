@@ -28,9 +28,7 @@
         "info": {
           "$ref": "#/definitions/Info"
         },
-        "transfer": {
-          "type": ["string", "null"]
-        }
+        "transfer": {}
       },
       "required": ["id", "info", "transfer"],
       "title": "Player"

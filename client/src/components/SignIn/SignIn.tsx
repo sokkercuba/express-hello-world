@@ -168,7 +168,7 @@ export default function SignIn() {
             <Link
               variant="body1"
               component="button"
-              onClick={() => navigate('/login')}
+              onClick={() => navigate('/signup')}
             >
               Sign Up
             </Link>
