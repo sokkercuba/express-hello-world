@@ -33,7 +33,7 @@ const updateCollection = async (req, res) => {
 
     const { training: newTraining, ...rest } = body
     const mergedTraining = mergeObjects(training, newTraining)
-    const data = { mergedTraining, ...rest }
+    const data = { training: mergedTraining, ...rest }
 
     // Save new updated data
     await db.collection(col).set(key, data)

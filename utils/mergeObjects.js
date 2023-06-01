@@ -1,5 +1,7 @@
 const mergeObjects = (target, source) => {
-  if (!source) return {}
+  if (!target && source) return source
+  if (target && !source) return target
+  if (!target && !source) return {}
 
   const merged = { ...target }
 
