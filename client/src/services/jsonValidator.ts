@@ -12,7 +12,8 @@ const ajv = new Ajv({
   allErrors: true,
   code: {
     source: true
-  }
+  },
+  allowUnionTypes: true
 })
 addFormats(ajv)
 ajv.addSchema(user, 'user')

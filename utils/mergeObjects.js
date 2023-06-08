@@ -1,26 +1,18 @@
-const mergeObjects = (target, source) => {
-  if (!target && source) return source
-  if (target && !source) return target
-  if (!target && !source) return {}
+function mergeObjects(target, source) {
+  if (!target?.length && source) return source
+  if (target && !source?.length) return target
+  if (!target?.length && !source?.length) return []
 
-  const merged = { ...target }
+  const sourceMap = {}
+  for (const obj of source) {
+    sourceMap[obj.id] = obj
+  }
 
-  for (const key in source) {
-    if (Object.hasOwnProperty.call(source, key)) {
-      const sourceValue = source[key]
-
-      if (typeof sourceValue === 'object' && sourceValue !== null) {
-        const targetValue = target[key]
-
-        if (typeof targetValue === 'object' && targetValue !== null) {
-          merged[key] = mergeObjects(targetValue, sourceValue)
-        } else {
-          merged[key] = { ...sourceValue }
-        }
-      } else {
-        merged[key] = sourceValue
-      }
-    }
+  const merged = []
+  for (const obj of target) {
+    const sourceObj = sourceMap[obj.id]
+    const mergedObj = sourceObj ? { ...obj, ...sourceObj } : obj
+    merged.push(mergedObj)
   }
 
   return merged

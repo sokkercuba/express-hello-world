@@ -47,12 +47,12 @@ export default function UpdatePage() {
         body
       )
 
-      const { error, status, props } = result
+      const { error, status } = result
 
       if (error || status !== 200) return
 
       setValue('')
-      setAll(dispatch, { ...props })
+      if (isAll) setAll(dispatch, { ...body })
 
       enqueueSnackbar(
         `You have successfully updated your ${type} data into our database`,

@@ -28,12 +28,20 @@ const updateCollection = async (req, res) => {
 
   try {
     const {
-      props: { training }
+      props: { training, juniors }
     } = await db.collection(col).get(key)
 
-    const { training: newTraining, ...rest } = body
+    const { training: newTraining, juniors: newJuniors, ...rest } = body
     const mergedTraining = mergeObjects(training, newTraining)
-    const data = { training: mergedTraining, ...rest }
+    const mergedJuniors = mergeObjects(
+      juniors?.juniors || [],
+      newJuniors?.juniors || []
+    )
+    const data = {
+      training: mergedTraining,
+      juniors: { juniors: mergedJuniors },
+      ...rest
+    }
 
     // Save new updated data
     await db.collection(col).set(key, data)
