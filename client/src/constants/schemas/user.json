@@ -27,9 +27,7 @@
         "hasTrialPlus": {
           "type": "boolean"
         },
-        "plusDeadline": {
-          "type": ["null", "string"]
-        },
+        "plusDeadline": {},
         "today": {
           "$ref": "#/definitions/Today"
         },
@@ -144,7 +142,7 @@
     },
     "Team": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "id": {
           "type": "integer"

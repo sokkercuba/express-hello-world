@@ -35,7 +35,7 @@
     },
     "Info": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "name": {
           "$ref": "#/definitions/NameClass"
@@ -62,9 +62,7 @@
         "value": {
           "$ref": "#/definitions/Value"
         },
-        "previousValue": {
-          "type": ["number", "null"]
-        },
+        "previousValue": {},
         "wage": {
           "$ref": "#/definitions/Value"
         },
@@ -269,7 +267,7 @@
     },
     "Team": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "id": {
           "type": "integer"
