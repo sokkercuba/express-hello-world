@@ -1,0 +1,1 @@
+import{j as o,F as r,a as s}from"./vendor-15700094.js";import"./index-64a314e6.js";import{S as a}from"./ScrollToTopOnMount-3097222d.js";const t=()=>o(r,{children:[s(a,{}),s("div",{children:"Hello about"})]});export{t as default};

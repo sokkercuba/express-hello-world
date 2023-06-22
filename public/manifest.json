@@ -28,7 +28,7 @@
       "src/pages/xtreme/XtremePage.tsx",
       "src/pages/training/TrainingPage.tsx"
     ],
-    "file": "assets/index-3afd915a.js",
+    "file": "assets/index-64a314e6.js",
     "imports": [
       "_vendor-15700094.js"
     ],
@@ -36,7 +36,7 @@
     "src": "index.html"
   },
   "src/components/SignIn/index.ts": {
-    "file": "assets/index-ab8d0bc4.js",
+    "file": "assets/index-cdba7d8e.js",
     "imports": [
       "_vendor-15700094.js",
       "index.html"
@@ -45,7 +45,7 @@
     "src": "src/components/SignIn/index.ts"
   },
   "src/components/SignUp/index.ts": {
-    "file": "assets/index-2f0759f0.js",
+    "file": "assets/index-bac42526.js",
     "imports": [
       "_vendor-15700094.js",
       "index.html"
@@ -62,7 +62,7 @@
     "src": "src/pages/404/NotFoundPage.tsx"
   },
   "src/pages/about/AboutPage.tsx": {
-    "file": "assets/AboutPage-7b6fef07.js",
+    "file": "assets/AboutPage-2bbea57c.js",
     "imports": [
       "_vendor-15700094.js",
       "index.html",
@@ -72,7 +72,7 @@
     "src": "src/pages/about/AboutPage.tsx"
   },
   "src/pages/addon/AddonPage.tsx": {
-    "file": "assets/AddonPage-7906bd46.js",
+    "file": "assets/AddonPage-0a5b7ce7.js",
     "imports": [
       "_vendor-15700094.js",
       "index.html",
@@ -94,7 +94,7 @@
     "src": "src/pages/addon/firefox-browser-icon.svg"
   },
   "src/pages/contact/ContactPage.tsx": {
-    "file": "assets/ContactPage-90e061de.js",
+    "file": "assets/ContactPage-1060c2b9.js",
     "imports": [
       "_vendor-15700094.js",
       "index.html",
@@ -113,7 +113,7 @@
     "src": "src/pages/team/TeamPage.tsx"
   },
   "src/pages/training/TrainingPage.tsx": {
-    "file": "assets/TrainingPage-9f203801.js",
+    "file": "assets/TrainingPage-2be3ab1d.js",
     "imports": [
       "_vendor-15700094.js",
       "_PageTabs-5637dc77.js",
@@ -123,7 +123,7 @@
     "src": "src/pages/training/TrainingPage.tsx"
   },
   "src/pages/update/UpdatePage.tsx": {
-    "file": "assets/UpdatePage-5d625684.js",
+    "file": "assets/UpdatePage-3a376ec4.js",
     "imports": [
       "_vendor-15700094.js",
       "index.html"
@@ -132,7 +132,7 @@
     "src": "src/pages/update/UpdatePage.tsx"
   },
   "src/pages/xtreme/XtremePage.tsx": {
-    "file": "assets/XtremePage-550ac332.js",
+    "file": "assets/XtremePage-0befe301.js",
     "imports": [
       "_vendor-15700094.js",
       "index.html"
