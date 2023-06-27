@@ -17,7 +17,7 @@ const ajv = new Ajv({
 })
 addFormats(ajv)
 ajv.addSchema(user, 'user')
-ajv.addSchema(players, 'team')
+ajv.addSchema(players, 'players')
 ajv.addSchema(juniors, 'juniors')
 ajv.addSchema(cweek, 'cweek')
 ajv.addSchema(tsummary, 'tsummary')

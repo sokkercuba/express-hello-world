@@ -25,7 +25,7 @@ export default function ToggleButtonsMultiple({ id }: { id: number }) {
         size="small"
         value="GK"
         aria-label="goal keeper"
-        sx={{ border: 'none' }}
+        sx={{ border: 'none', paddingX: { xs: '3px', sm: '7px' } }}
       >
         GK
       </ToggleButton>
@@ -33,7 +33,7 @@ export default function ToggleButtonsMultiple({ id }: { id: number }) {
         size="small"
         value="DEF"
         aria-label="defender"
-        sx={{ border: 'none' }}
+        sx={{ border: 'none', paddingX: { xs: '3px', sm: '7px' } }}
       >
         DEF
       </ToggleButton>
@@ -41,7 +41,7 @@ export default function ToggleButtonsMultiple({ id }: { id: number }) {
         size="small"
         value="MID"
         aria-label="midfielder"
-        sx={{ border: 'none' }}
+        sx={{ border: 'none', paddingX: { xs: '3px', sm: '7px' } }}
       >
         MID
       </ToggleButton>
@@ -49,7 +49,7 @@ export default function ToggleButtonsMultiple({ id }: { id: number }) {
         size="small"
         value="ATT"
         aria-label="striker"
-        sx={{ border: 'none' }}
+        sx={{ border: 'none', paddingX: { xs: '3px', sm: '7px' } }}
       >
         ATT
       </ToggleButton>

@@ -37,9 +37,11 @@ export default function UpdatePage() {
     const isAll = updateType === 'all'
     const data = validateUpdateData(value, updateType)
     const type = isAll ? username : updateType
+    console.log('🚀 ~ updateType:', updateType)
 
     if (data) {
       const body = isAll ? data : { [updateType]: data }
+      console.log('🚀 ~ body:', body)
       const result = await handleApiRequest(
         `/api/v1/users/${username}`,
         'PATCH',

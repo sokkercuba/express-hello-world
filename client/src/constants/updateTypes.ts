@@ -1,7 +1,7 @@
 export const updateTypes = {
   all: 'All',
   user: 'User',
-  team: 'Team',
+  players: 'Players',
   juniors: 'Juniors',
   cweek: 'Current Week',
   tsummary: 'Training Summary',
