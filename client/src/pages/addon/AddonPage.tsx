@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import { ScrollToTopOnMount } from '../../components'
+import { ReactComponent as ChromeIcon } from './chrome_icon.svg'
 import { ReactComponent as FirefoxIcon } from './firefox-browser-icon.svg'
 
 const AddonPage = () => {
@@ -44,6 +45,17 @@ const AddonPage = () => {
               underline="none"
             >
               Firefox
+            </Link>
+          </Button>
+          <Button
+            size="small"
+            startIcon={<SvgIcon component={ChromeIcon} inheritViewBox />}
+          >
+            <Link
+              href="https://chrome.google.com/webstore/detail/sokker-json-data-exporter/ioehnfgobejdjgfgbellbkhhhofecdid"
+              underline="none"
+            >
+              Chrome
             </Link>
           </Button>
         </CardActions>

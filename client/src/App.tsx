@@ -26,7 +26,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
 })
 
 const App = () => {
-  const [selectedTheme, setSelectedTheme] = useState<PaletteMode>('light')
+  const [selectedTheme, setSelectedTheme] = useState<PaletteMode>('dark')
   const theme = createTheme(getDesignTokens(selectedTheme))
 
   return (

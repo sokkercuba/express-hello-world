@@ -1,7 +1,8 @@
+import Squad from './Squad'
 import PageTabs from '../../components/PageTabs'
 
 const Tabs = [
-  { label: 'MAIN', children: 'MAIN DATA' },
+  { label: 'MAIN', children: <Squad /> },
   { label: 'JUNIORS', children: 'JUNIORS DATA' }
 ]
 

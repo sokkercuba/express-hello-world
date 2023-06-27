@@ -1,4 +1,4 @@
-export interface TeamPlayerInfo {
+export interface PlayerInfo {
   name: {
     name: string
     surname: string
@@ -10,6 +10,7 @@ export interface TeamPlayerInfo {
     id: number
     name: string
     rank: number
+    rankPosition: number
     emblem: string
     country: {
       code: number
@@ -127,15 +128,4 @@ export interface TeamPlayerInfo {
     severe: boolean
   }
   nationalSharing: boolean
-}
-
-export interface TeamPlayer {
-  id: number
-  info: TeamPlayerInfo
-  transfer: any
-}
-
-export interface Team {
-  players: TeamPlayer[]
-  total: number
 }
