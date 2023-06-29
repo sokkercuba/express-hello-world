@@ -815,9 +815,7 @@
         "nationalTeamId": {
           "type": ["integer", "null"]
         },
-        "nationalTeam": {
-          "type": ["string", "null"]
-        },
+        "nationalTeam": {},
         "firstLogin": {
           "type": "boolean"
         },
