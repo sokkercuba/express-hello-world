@@ -46,9 +46,7 @@
         "nationalTeamId": {
           "type": "integer"
         },
-        "nationalTeam": {
-          "type": {}
-        },
+        "nationalTeam": {},
         "firstLogin": {
           "type": "boolean"
         },

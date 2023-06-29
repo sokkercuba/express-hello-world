@@ -28,7 +28,7 @@
       "src/pages/xtreme/XtremePage.tsx",
       "src/pages/training/TrainingPage.tsx"
     ],
-    "file": "assets/index-abeb9898.js",
+    "file": "assets/index-65a66730.js",
     "imports": [
       "_vendor-e69cc4a7.js"
     ],
@@ -36,7 +36,7 @@
     "src": "index.html"
   },
   "src/components/SignIn/index.ts": {
-    "file": "assets/index-778d3fcf.js",
+    "file": "assets/index-2e61ba98.js",
     "imports": [
       "_vendor-e69cc4a7.js",
       "index.html"
@@ -45,7 +45,7 @@
     "src": "src/components/SignIn/index.ts"
   },
   "src/components/SignUp/index.ts": {
-    "file": "assets/index-d5bde1ee.js",
+    "file": "assets/index-979ea1ab.js",
     "imports": [
       "_vendor-e69cc4a7.js",
       "index.html"
@@ -62,7 +62,7 @@
     "src": "src/pages/404/NotFoundPage.tsx"
   },
   "src/pages/about/AboutPage.tsx": {
-    "file": "assets/AboutPage-b2e66783.js",
+    "file": "assets/AboutPage-85717a47.js",
     "imports": [
       "_vendor-e69cc4a7.js",
       "index.html",
@@ -72,7 +72,7 @@
     "src": "src/pages/about/AboutPage.tsx"
   },
   "src/pages/addon/AddonPage.tsx": {
-    "file": "assets/AddonPage-a6e1d0ad.js",
+    "file": "assets/AddonPage-eb27e645.js",
     "imports": [
       "_vendor-e69cc4a7.js",
       "index.html",
@@ -98,7 +98,7 @@
     "src": "src/pages/addon/firefox-browser-icon.svg"
   },
   "src/pages/contact/ContactPage.tsx": {
-    "file": "assets/ContactPage-145eeec6.js",
+    "file": "assets/ContactPage-1aab5d23.js",
     "imports": [
       "_vendor-e69cc4a7.js",
       "index.html",
@@ -108,7 +108,7 @@
     "src": "src/pages/contact/ContactPage.tsx"
   },
   "src/pages/team/TeamPage.tsx": {
-    "file": "assets/TeamPage-2c40e9c7.js",
+    "file": "assets/TeamPage-55c6d676.js",
     "imports": [
       "_vendor-e69cc4a7.js",
       "index.html",
@@ -118,7 +118,7 @@
     "src": "src/pages/team/TeamPage.tsx"
   },
   "src/pages/training/TrainingPage.tsx": {
-    "file": "assets/TrainingPage-36c5051d.js",
+    "file": "assets/TrainingPage-42cf3e3a.js",
     "imports": [
       "_vendor-e69cc4a7.js",
       "_PageTabs-bbf65fd2.js",
@@ -128,7 +128,7 @@
     "src": "src/pages/training/TrainingPage.tsx"
   },
   "src/pages/update/UpdatePage.tsx": {
-    "file": "assets/UpdatePage-ba002a53.js",
+    "file": "assets/UpdatePage-bddf58bf.js",
     "imports": [
       "_vendor-e69cc4a7.js",
       "index.html"
@@ -137,7 +137,7 @@
     "src": "src/pages/update/UpdatePage.tsx"
   },
   "src/pages/xtreme/XtremePage.tsx": {
-    "file": "assets/XtremePage-72b7b790.js",
+    "file": "assets/XtremePage-fc913a25.js",
     "imports": [
       "_vendor-e69cc4a7.js",
       "index.html"
