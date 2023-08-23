@@ -647,6 +647,9 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        "age": {
+          "type": "integer"
+        },
         "week": {
           "type": "integer"
         },

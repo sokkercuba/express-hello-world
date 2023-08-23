@@ -1,5 +1,5 @@
 const CyclicDb = require('@cyclic.sh/dynamodb')
-const { mergeObjects } = require('../utils/mergeObjects')
+const { mergeTraining, mergeJuniors } = require('../utils/mergeObjects')
 const db = CyclicDb('fantastic-shirt-mothCyclicDB')
 
 const setCollection = async (req, res) => {
@@ -32,8 +32,8 @@ const updateCollection = async (req, res) => {
     } = await db.collection(col).get(key)
 
     const { training: newTraining, juniors: newJuniors, ...rest } = body
-    const mergedTraining = mergeObjects(training, newTraining)
-    const mergedJuniors = mergeObjects(
+    const mergedTraining = mergeTraining(training, newTraining)
+    const mergedJuniors = mergeJuniors(
       juniors?.juniors || [],
       newJuniors?.juniors || []
     )

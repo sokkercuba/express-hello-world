@@ -1,4 +1,5 @@
 interface Report {
+  age: number
   week: number
   day: {
     season: number

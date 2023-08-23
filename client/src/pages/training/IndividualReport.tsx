@@ -47,6 +47,7 @@ export default function IndividualReport() {
         const {
           week,
           skills,
+          age: newAge,
           skillsChange,
           type: skillTrained,
           formation,
@@ -62,7 +63,7 @@ export default function IndividualReport() {
           trainingType.name === 'missing' && injury.daysRemaining > 6
             ? 'injured'
             : trainingType.name
-        const age = playerShown?.info.characteristics.age || 0
+        const age = newAge || playerShown?.info.characteristics.age || 0
         const games = `${minutes.minutesOfficial}'/${minutes.minutesFriendly}'/${minutes.minutesNational}'`
         const skillsData: Partial<SkillsTableData> = skillCellRenderer({
           skills,
