@@ -1,15 +1,45 @@
+function mergeReports(targetReports, sourceReports) {
+  const uniqueWeeks = new Set(targetReports.map((report) => report.week))
+  const mergedReports = [...targetReports]
+
+  for (const sourceReport of sourceReports) {
+    if (!uniqueWeeks.has(sourceReport.week)) {
+      mergedReports.push(sourceReport)
+      uniqueWeeks.add(sourceReport.week)
+    }
+  }
+
+  // Sort the merged reports by the "week" property in descending order
+  mergedReports.sort((a, b) => b.week - a.week)
+
+  return mergedReports
+}
+
 function mergeTraining(target, source) {
   if (!target?.length && source) return source
   if (target && !source?.length) return target
   if (!target?.length && !source?.length) return []
 
-  const uniqueWeeks = new Set(target.map((obj) => obj.week))
   const merged = [...target]
 
   for (const sourceObj of source) {
-    if (!uniqueWeeks.has(sourceObj.week)) {
+    const targetObjIndex = merged.findIndex(
+      (targetObj) => targetObj.id === sourceObj.id
+    )
+
+    if (targetObjIndex === -1) {
+      // If the object with the same ID is not found, add it to the merged array
       merged.push(sourceObj)
-      uniqueWeeks.add(sourceObj.week)
+    } else {
+      // If the object with the same ID is found, merge the "reports" property
+      const targetReports = merged[targetObjIndex].reports || []
+      const sourceReports = sourceObj.reports || []
+      const mergedReports = mergeReports(targetReports, sourceReports)
+
+      merged[targetObjIndex] = {
+        ...merged[targetObjIndex],
+        reports: mergedReports
+      }
     }
   }
 
