@@ -3,10 +3,13 @@ const app = express()
 const helmet = require('helmet')
 const router = require('./routes')
 const session = require('express-session')
+const compression = require('compression')
 const { CyclicSessionStore } = require('@cyclic.sh/session-store')
 
 const oneHourMs = 60 * 60 * 1000
 const oneDayMs = 24 * oneHourMs
+
+app.use(compression())
 
 // #############################################################################
 // Logs all request paths and method

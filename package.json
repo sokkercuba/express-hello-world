@@ -4,8 +4,8 @@
   "description": "Expressjs Hello World example to provide faster start deploying on Cyclic platform",
   "main": "server.js",
   "scripts": {
-    "serve": "export NODE_ENV=dev && nodemon --watch . server.js",
-    "start": "export NODE_ENV=production && node server.js",
+    "serve": "set NODE_ENV=dev && nodemon --watch . server.js",
+    "start": "set NODE_ENV=production && node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "git+https://github.com/cyclic-software/express-hello-world.git",
@@ -19,8 +19,10 @@
     "@cyclic.sh/dynamodb": "^0.0.33",
     "@cyclic.sh/session-store": "^0.0.17",
     "aws-sdk": "^2.1351.0",
+    "compression": "^1.7.4",
     "express": "^4.17.1",
     "express-session": "^1.17.3",
+    "flatted": "^3.2.9",
     "helmet": "^6.0.1",
     "uuid": "^9.0.0"
   },
