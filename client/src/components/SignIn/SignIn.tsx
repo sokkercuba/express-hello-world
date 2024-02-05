@@ -61,7 +61,7 @@ export default function SignIn() {
       user: { login }
     } = data
 
-    if (error || status !== 200) return
+    if (error || status !== 200 || !login) return
 
     setLogin(dispatch, true)
     setUsername(dispatch, login)
@@ -75,7 +75,7 @@ export default function SignIn() {
     const {
       error: error2,
       status: status2,
-      props: { user, juniors, cweek, tsummary, players, training }
+      user, juniors, cweek, tsummary, players, training
     } = allData
 
     if (error2 || status2 !== 200) return

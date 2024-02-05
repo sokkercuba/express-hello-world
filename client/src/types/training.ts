@@ -1,4 +1,4 @@
-interface Report {
+export interface Report {
   age: number
   week: number
   day: {

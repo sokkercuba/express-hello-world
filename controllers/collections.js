@@ -30,11 +30,13 @@ const updateCollection = async (req, res) => {
   }
 
   try {
-    const props = await db.collection(col).get(key)
-    const deCompressed = await decompressAndParse(props?.data || props)
-    const {
-      props: { training, juniors }
-    } = deCompressed
+    const item = await db.collection(col).get(key)
+    let itemData = item?.props
+
+    if (item?.props?.data) {
+      itemData = await decompressAndParse(item?.props?.data)
+    }
+    const { training, juniors } = itemData
 
     const { training: newTraining, juniors: newJuniors, ...rest } = body
     const mergedTraining = mergeTraining(training, newTraining)
@@ -45,7 +47,7 @@ const updateCollection = async (req, res) => {
     const data = {
       ...rest,
       training: mergedTraining,
-      juniors: { juniors: mergedJuniors?.juniors || [] }
+      juniors: { juniors: mergedJuniors || [] }
     }
 
     const withCompression = await compressData(data)
@@ -86,9 +88,13 @@ const getCollection = async (req, res) => {
   }
 
   const item = await db.collection(col).get(key)
-  const deCompressed = await decompressAndParse(item?.props?.data || [])
+  let data = item?.props
 
-  res.json({ data: deCompressed }).end()
+  if (item?.props?.data) {
+    data = await decompressAndParse(item?.props?.data)
+  }
+
+  res.json({ ...data }).end()
 }
 
 const getCollections = async (req, res) => {
@@ -104,8 +110,12 @@ const getCollections = async (req, res) => {
   const items = await Promise.all(
     itemsMetadata.map(async ({ key }) => {
       const item = await db.collection(col).get(key).props
-      const deCompressed = await decompressAndParse(item)
-      return { data: deCompressed }
+      let data = item?.props
+
+      if (item?.props?.data) {
+        data = await decompressAndParse(item?.props?.data)
+      }
+      return data
     })
   )
 

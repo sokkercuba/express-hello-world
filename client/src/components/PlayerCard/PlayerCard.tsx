@@ -55,7 +55,7 @@ function renderCard(cardStats: CardStats) {
     return <LooksTwoIcon sx={{ color: '#ffeb3b' }} />
   }
 
-  return 0
+  return "0 "
 }
 
 function PlayerCard({ id, info }: TeamPlayer) {
@@ -158,9 +158,8 @@ function PlayerCard({ id, info }: TeamPlayer) {
             <Box sx={{ gap: '4px', display: 'flex', alignItems: 'center' }}>
               <Typography fontWeight={700} variant="subtitle2">{`${SkillsLevels[
                 info.skills.tacticalDiscipline
-              ].toLocaleLowerCase()} [${
-                info.skills.tacticalDiscipline
-              }]`}</Typography>{' '}
+              ].toLocaleLowerCase()} [${info.skills.tacticalDiscipline
+                }]`}</Typography>{' '}
               tactical discipline
             </Box>
           </ListItem>
@@ -198,15 +197,17 @@ function PlayerCard({ id, info }: TeamPlayer) {
           >
             {' '}
             <Box sx={{ gap: '4px', display: 'flex', alignItems: 'center' }}>
-              cards: {renderCard(info.nationalStats.cards)} injury:{' '}
-              {info.injury.daysRemaining > 0 ? (
-                <>
-                  <LocalHospitalSharpIcon color="error" fontSize="small" />
-                  {`(${info.injury.daysRemaining} days)`}
-                </>
-              ) : (
-                'none'
-              )}
+              <>cards: {renderCard(info.stats.cards)}</>
+              <>NT cards: {renderCard(info.nationalStats.cards)}</>
+              <>injury:
+                {info.injury.daysRemaining > 0 ? (
+                  <>
+                    <LocalHospitalSharpIcon color="error" fontSize="small" />
+                    {`(${info.injury.daysRemaining} days)`}
+                  </>
+                ) : (
+                  'none'
+                )}</>
             </Box>
           </ListItem>
           <Divider variant="middle" />
@@ -230,9 +231,8 @@ function PlayerCard({ id, info }: TeamPlayer) {
             >
               <Typography fontWeight={700} variant="subtitle2">{`${SkillsLevels[
                 info.skills.stamina
-              ].toLocaleLowerCase()} [${
-                info.skills.stamina
-              }]`}</Typography>{' '}
+              ].toLocaleLowerCase()} [${info.skills.stamina
+                }]`}</Typography>{' '}
               stamina
             </Box>
             <Box
@@ -281,9 +281,8 @@ function PlayerCard({ id, info }: TeamPlayer) {
             >
               <Typography fontWeight={700} variant="subtitle2">{`${SkillsLevels[
                 info.skills.defending
-              ].toLocaleLowerCase()} [${
-                info.skills.defending
-              }]`}</Typography>{' '}
+              ].toLocaleLowerCase()} [${info.skills.defending
+                }]`}</Typography>{' '}
               defender
             </Box>
           </ListItem>
@@ -306,9 +305,8 @@ function PlayerCard({ id, info }: TeamPlayer) {
             >
               <Typography fontWeight={700} variant="subtitle2">{`${SkillsLevels[
                 info.skills.technique
-              ].toLocaleLowerCase()} [${
-                info.skills.technique
-              }]`}</Typography>{' '}
+              ].toLocaleLowerCase()} [${info.skills.technique
+                }]`}</Typography>{' '}
               technique
             </Box>
             <Box
@@ -321,9 +319,8 @@ function PlayerCard({ id, info }: TeamPlayer) {
             >
               <Typography fontWeight={700} variant="subtitle2">{`${SkillsLevels[
                 info.skills.playmaking
-              ].toLocaleLowerCase()} [${
-                info.skills.playmaking
-              }]`}</Typography>{' '}
+              ].toLocaleLowerCase()} [${info.skills.playmaking
+                }]`}</Typography>{' '}
               playmaker
             </Box>
           </ListItem>
@@ -346,9 +343,8 @@ function PlayerCard({ id, info }: TeamPlayer) {
             >
               <Typography fontWeight={700} variant="subtitle2">{`${SkillsLevels[
                 info.skills.passing
-              ].toLocaleLowerCase()} [${
-                info.skills.passing
-              }]`}</Typography>{' '}
+              ].toLocaleLowerCase()} [${info.skills.passing
+                }]`}</Typography>{' '}
               passing
             </Box>
             <Box
@@ -361,9 +357,8 @@ function PlayerCard({ id, info }: TeamPlayer) {
             >
               <Typography fontWeight={700} variant="subtitle2">{`${SkillsLevels[
                 info.skills.striker
-              ].toLocaleLowerCase()} [${
-                info.skills.striker
-              }]`}</Typography>{' '}
+              ].toLocaleLowerCase()} [${info.skills.striker
+                }]`}</Typography>{' '}
               striker
             </Box>
           </ListItem>

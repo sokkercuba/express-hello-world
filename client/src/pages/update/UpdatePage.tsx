@@ -35,11 +35,11 @@ export default function UpdatePage() {
     event.preventDefault()
 
     const isAll = updateType === 'all'
-    const data = validateUpdateData(value, updateType)
+    const validData = validateUpdateData(value, updateType)
     const type = isAll ? username : updateType
 
-    if (data) {
-      const body = isAll ? data : { [updateType]: data }
+    if (validData) {
+      const body = isAll ? validData : { [updateType]: validData }
       const result = await handleApiRequest(
         `/api/v1/users/${username}`,
         'PATCH',
@@ -47,12 +47,12 @@ export default function UpdatePage() {
         body
       )
 
-      const { error, status } = result
+      const { error, status, ...rest } = result
 
       if (error || status !== 200) return
 
       setValue('')
-      setAll(dispatch, { ...body })
+      setAll(dispatch, { ...rest })
 
       enqueueSnackbar(
         `You have successfully updated your ${type} data into our database`,

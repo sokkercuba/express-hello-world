@@ -16,6 +16,8 @@ import TableContainer from '@mui/material/TableContainer'
 import TablePagination from '@mui/material/TablePagination'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { skillCellRenderer } from './skillCellRenderer'
+import { Report } from '../../types/training'
+import { calculateSkillGrowth } from '../../utils/calculateTalent'
 
 export default function IndividualReport() {
   const theme = useTheme()
@@ -24,6 +26,7 @@ export default function IndividualReport() {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(25)
   const [playerShown, setPlayerShown] = useState(players?.players[0] || null)
+  const [playerReports, setPlayerReports] = useState<Report[]>([])
 
   const playersData = players?.players ? players.players : []
 
@@ -31,8 +34,8 @@ export default function IndividualReport() {
     () =>
       playersData.length
         ? playersData.find(
-            (pj) => pj.info.name.full === playerShown?.info.name.full
-          )
+          (pj) => pj.info.name.full === playerShown?.info.name.full
+        )
         : null,
     [playerShown, playersData]
   )
@@ -42,7 +45,10 @@ export default function IndividualReport() {
       ? training.find((v) => v.id === playerShown?.id)
       : null
 
+    setPlayerReports(data?.reports || [])
+
     if (data && data.reports?.length) {
+
       const reports = data.reports.map((rep) => {
         const {
           week,
@@ -125,23 +131,34 @@ export default function IndividualReport() {
 
   return (
     <Box>
-      <FormControl sx={{ minWidth: 210 }}>
-        <InputLabel id="player-select-label">Players</InputLabel>
-        <Select
-          label="Players"
-          id="player-select"
-          labelId="player-select-label"
-          onChange={handlePlayerChange}
-          value={selectValue?.info.name.full || ''}
-          inputProps={{ MenuProps: { disableScrollLock: true } }}
-        >
-          {playersData.map(({ id, info }) => (
-            <MenuItem key={id} value={info.name.full}>
-              {info.name.full}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <Box sx={{
+        gap: "24px",
+        display: 'flex',
+        alignItems: 'center',
+      }}>
+        <FormControl sx={{ minWidth: 210 }}>
+          <InputLabel id="player-select-label">Players</InputLabel>
+          <Select
+            label="Players"
+            id="player-select"
+            labelId="player-select-label"
+            onChange={handlePlayerChange}
+            value={selectValue?.info.name.full || ''}
+            inputProps={{ MenuProps: { disableScrollLock: true } }}
+          >
+            {playersData.map(({ id, info }) => (
+              <MenuItem key={id} value={info.name.full}>
+                {info.name.full}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <Box sx={{
+          gap: "8px",
+          display: 'flex',
+          alignItems: 'center',
+        }}>Gross Talent: {calculateSkillGrowth(playerReports).averageGrowth}</Box>
+      </Box>
       {playerShown && (
         <Box mt={2}>
           <Paper variant="outlined" sx={{ width: '100%', overflow: 'hidden' }}>

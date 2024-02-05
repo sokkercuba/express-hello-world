@@ -1,80 +1,99 @@
-// interface SkillGrowthData {
-//   week: number
-//   skill: string
-//   growth: number
-// }
+import { Report } from '../types/training'
 
-// // Function to estimate talent based on historical skill growth data
-// export function estimateTalent(skillGrowthData: SkillGrowthData[]): number {
-//   // Separate data for each skill
-//   const skillData: { [skill: string]: { x: number[]; y: number[] } } = {}
+interface SkillGrowthData {
+  week: number
+  skill: string
+  growth: number
+}
 
-//   // Populate skillData
-//   skillGrowthData.forEach(({ week, skill, growth }) => {
-//     if (!skillData[skill]) {
-//       skillData[skill] = { x: [], y: [] }
-//     }
-//     skillData[skill].x.push(week)
-//     skillData[skill].y.push(growth)
-//   })
+// Function to estimate talent based on historical skill growth data
+export function estimateTalent(skillGrowthData: SkillGrowthData[]): number {
+  // Separate data for each skill
+  const skillData: { [skill: string]: { x: number[]; y: number[] } } = {}
 
-//   // Linear regression for each skill
-//   const skillTalent: { [skill: string]: number } = {}
-//   Object.keys(skillData).forEach((skill) => {
-//     const { x, y } = skillData[skill]
+  // Populate skillData
+  skillGrowthData.forEach(({ week, skill, growth }) => {
+    if (!skillData[skill]) {
+      skillData[skill] = { x: [], y: [] }
+    }
+    skillData[skill].x.push(week)
+    skillData[skill].y.push(growth)
+  })
 
-//     // Linear regression formula: y = mx + b
-//     const n = x.length
-//     const sumX = x.reduce((acc, val) => acc + val, 0)
-//     const sumY = y.reduce((acc, val) => acc + val, 0)
-//     const sumXY = x.reduce((acc, val, index) => acc + val * y[index], 0)
-//     const sumXSquare = x.reduce((acc, val) => acc + val * val, 0)
+  // Linear regression for each skill
+  const skillTalent: { [skill: string]: number } = {}
+  Object.keys(skillData).forEach((skill) => {
+    const { x, y } = skillData[skill]
 
-//     const m = (n * sumXY - sumX * sumY) / (n * sumXSquare - sumX * sumX)
+    // Linear regression formula: y = mx + b
+    const n = x.length
+    const sumX = x.reduce((acc, val) => acc + val, 0)
+    const sumY = y.reduce((acc, val) => acc + val, 0)
+    const sumXY = x.reduce((acc, val, index) => acc + val * y[index], 0)
+    const sumXSquare = x.reduce((acc, val) => acc + val * val, 0)
 
-//     // Talent is the slope of the linear regression line
-//     skillTalent[skill] = m
-//   })
+    const m = (n * sumXY - sumX * sumY) / (n * sumXSquare - sumX * sumX)
 
-//   // Average talent across all skills
-//   const totalTalent = Object.values(skillTalent).reduce(
-//     (acc, val) => acc + val,
-//     0
-//   )
-//   const averageTalent = totalTalent / Object.keys(skillTalent).length
+    // Talent is the slope of the linear regression line
+    skillTalent[skill] = m
+  })
 
-//   return averageTalent
-// }
+  // Average talent across all skills
+  const totalTalent = Object.values(skillTalent).reduce(
+    (acc, val) => acc + val,
+    0
+  )
+  const averageTalent = totalTalent / Object.keys(skillTalent).length
 
-// // Example of usage
-// const skillGrowthData: SkillGrowthData[] = [
-//   { week: 1, skill: 'pace', growth: 0.5 },
-//   { week: 2, skill: 'pace', growth: 0.7 }
-//   // Add more data for other skills and weeks
-// ]
+  return averageTalent
+}
 
-// function calculateSkillGrowth(changes: SkillGrowthData[]) {
-//   const result = {}
+type SkillName = keyof Report['skills']
 
-//   // Extracting the skills and weeks from the first and last entries
-//   const finalSkills = changes[0].skills
-//   const initialSkills = changes[changes.length - 1].skills
-//   const weeks = changes.length - 1 // Total weeks excluding the initial state
-//   console.log('weeks: ', weeks)
-//   console.log('initialSkills: ', initialSkills)
-//   console.log('finalSkills: ', finalSkills)
+const skillsToConsider: SkillName[] = [
+  'playmaking',
+  'striker',
+  'keeper',
+  'pace',
+  'defending',
+  'technique',
+  'passing'
+]
 
-//   // Calculating the growth for each skill
-//   Object.keys(initialSkills).forEach((skill) => {
-//     const initialSkillValue = initialSkills[skill]
-//     const finalSkillValue = finalSkills[skill]
+export function calculateSkillGrowth(data: Report[]) {
+  const growth: Record<string, number> = {}
 
-//     // Calculating growth for the skill
-//     const skillGrowth = weeks / (finalSkillValue - initialSkillValue)
+  skillsToConsider.forEach((skillName) => {
+    const skillData = data.filter((entry) => {
+      const { kind, type, intensity } = entry
+      return (
+        skillName === type.name && kind.name !== 'missing' && intensity >= 50
+      )
+    })
 
-//     // Assigning the growth value to the result object
-//     result[skill] = skillGrowth
-//   })
+    if (skillData.length >= 3) {
+      const weeks = skillData.length
+      const finalSkillValue = skillData[0].skills[skillName] // Newest value
+      const initialSkillValue = skillData[weeks - 1].skills[skillName] // Oldest value
+      const skillDivisor = finalSkillValue - initialSkillValue
+      if (skillDivisor > 0) {
+        const skillGrowth = weeks / skillDivisor
+        growth[skillName] = parseFloat(skillGrowth.toFixed(1))
+      } else growth[skillName] = 0
+    } else {
+      growth[skillName] = 0 // Skill data not available or didn't change
+    }
+  })
 
-//   return result
-// }
+  const growthValues = Object.values(growth)
+  const sumGrowth = growthValues.reduce((sum, value) => sum + value, 0)
+  let averageGrowth = 0
+
+  if (sumGrowth > 0) {
+    averageGrowth = sumGrowth / growthValues.filter((val) => val !== 0).length
+  }
+
+  growth['averageGrowth'] = parseFloat(averageGrowth.toFixed(2))
+
+  return growth
+}
