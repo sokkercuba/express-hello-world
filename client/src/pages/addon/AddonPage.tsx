@@ -41,6 +41,7 @@ const AddonPage = () => {
             startIcon={<SvgIcon component={FirefoxIcon} inheritViewBox />}
           >
             <Link
+              target="_blank"
               href="https://addons.mozilla.org/en-US/firefox/addon/sokker-json-data-exporter"
               underline="none"
             >
@@ -52,6 +53,7 @@ const AddonPage = () => {
             startIcon={<SvgIcon component={ChromeIcon} inheritViewBox />}
           >
             <Link
+              target="_blank"
               href="https://chrome.google.com/webstore/detail/sokker-json-data-exporter/ioehnfgobejdjgfgbellbkhhhofecdid"
               underline="none"
             >

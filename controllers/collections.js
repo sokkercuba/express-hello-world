@@ -94,7 +94,7 @@ const getCollection = async (req, res) => {
     data = await decompressAndParse(item?.props?.data)
   }
 
-  res.json({ ...data }).end()
+  res.json(data).end()
 }
 
 const getCollections = async (req, res) => {
@@ -109,7 +109,7 @@ const getCollections = async (req, res) => {
   const { results: itemsMetadata } = await db.collection(col).list()
   const items = await Promise.all(
     itemsMetadata.map(async ({ key }) => {
-      const item = await db.collection(col).get(key).props
+      const item = await db.collection(col).get(key)
       let data = item?.props
 
       if (item?.props?.data) {
