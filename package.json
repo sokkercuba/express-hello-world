@@ -16,8 +16,8 @@
   },
   "homepage": "https://github.com/cyclic-software/express-hello-world#readme",
   "dependencies": {
-    "@cyclic.sh/dynamodb": "^0.0.33",
-    "@cyclic.sh/session-store": "^0.0.17",
+    "@cyclic.sh/dynamodb": "^0.0.35",
+    "@cyclic.sh/session-store": "^0.0.19",
     "aws-sdk": "^2.1351.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",

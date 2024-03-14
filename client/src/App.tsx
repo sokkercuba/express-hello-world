@@ -42,5 +42,3 @@ const App = () => {
 }
 
 export default App
-
-// background-color: #1A1A37;

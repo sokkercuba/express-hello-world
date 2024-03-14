@@ -15,8 +15,11 @@ const setCollection = async (req, res) => {
 
   const withCompression = await compressData(body)
   const item = await db.collection(col).set(key, { data: withCompression })
+  console.log('item: ', item)
 
-  res.json(item).end()
+  res.json(body).end()
+  console.log('body: ', typeof body)
+  // res.json(item).end()
 }
 
 const updateCollection = async (req, res) => {
