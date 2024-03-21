@@ -122,6 +122,7 @@
       "title": "Date"
     },
     "Formation": {
+      "nullable": true,
       "type": "object",
       "additionalProperties": false,
       "properties": {

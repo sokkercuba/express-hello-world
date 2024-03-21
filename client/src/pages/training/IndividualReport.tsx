@@ -63,7 +63,7 @@ export default function IndividualReport() {
           injury
         } = rep
 
-        const pos = formation.name
+        const pos = formation?.name || "NA"
         const type = skillTrained.name
         const kind =
           trainingType.name === 'missing' && injury.daysRemaining > 6

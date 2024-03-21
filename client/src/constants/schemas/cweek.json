@@ -415,7 +415,6 @@
     },
     "Currency": {
       "type": "string",
-      "enum": ["$MN"],
       "title": "Currency"
     }
   }

@@ -47,7 +47,7 @@ export interface Report {
     minutesNational: number
   }
   intensity: number
-  formation: { code: number; name: string }
+  formation: { code: number; name: string } | null
   injury: { daysRemaining: number; severe: boolean }
 }
 
